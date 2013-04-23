@@ -2,91 +2,94 @@
 
 PDFJS.workerSrc = 'PDFJS/worker_loader.js';
 var App = {
-	init: function(pdfURL, notesURL) {
-		self = this;
-		$.ajax({
+    syncPage: function () {
+        // Push it to the server
+        $.ajax({
+            url: "news.php?write&data=Movepage:" + this.pageNumber,
+            cache: false
+        });
+    },
+    showNotes: function () {
+        $("#notes").html(this.notesArray[(this.pageNumber*2) -2]);
+    },
+    init: function (pdfURL, notesURL) {
+        var self = this;
+
+        $.ajax({
             url: notesURL,
             cache: false
-        }).done(function( msg )
-        {
-            self.notesArray = msg.split("\n\n");
-            $("#notes").html(self.notesArray[self.pageNumber-1]);
+        }).done(function (data) {
+            self.notesArray = data.split("\n");
+            self.showNotes();
         });
-		
-		var self = this;
-        PDFJS.getDocument(pdfURL).then(function(pdf)
-        {
+
+        var self = this;
+        PDFJS.getDocument(pdfURL).then(function (pdf) {
             self.pdfObj = pdf;
-            pdf.getPage(self.pageNumber).then(function(page) {
+            pdf.getPage(self.pageNumber).then(function (page) {
                 self.pageObj = page;
-                
+
                 var viewport = page.getViewport(1);
-                
-                var scaleWidth  = 700 / viewport.width;
+
+                var scaleWidth = 700 / viewport.width;
                 var scaleHeight = 700 / viewport.height;
-                
+
                 self.scale = ((scaleWidth > scaleHeight) ? scaleHeight : scaleWidth);
                 self.scaleAnnotation = self.scale;
                 self.display();
             });
         });
     },
-    display : function()
-    {
-        var viewport = this.pageObj.getViewport(this.scale);        
+    display: function () {
+        var viewport = this.pageObj.getViewport(this.scale);
         var canvas = document.getElementById('slide');
         var context = canvas.getContext('2d');
         canvas.height = viewport.height;
         canvas.width = viewport.width;
-        
+
         var renderContext = {
             canvasContext: context,
             viewport: viewport
         };
         this.pageObj.render(renderContext);
     },
-    displayAnnotationmode : function()
-    {
-        var viewport = this.pageObj.getViewport(this.scaleAnnotation);        
+    displayAnnotationmode: function () {
+        var viewport = this.pageObj.getViewport(this.scaleAnnotation);
         var canvas = document.getElementById('annotation');
         var context = canvas.getContext('2d');
         canvas.height = viewport.height;
         canvas.width = viewport.width;
-        
+
         var renderContext = {
             canvasContext: context,
             viewport: viewport
         };
         this.pageObj.render(renderContext);
     },
-    swipe : function(dir)
-    {
+    swipe: function (dir) { 
         this.pageNumber += dir;
         self = this;
-        this.pdfObj.getPage(this.pageNumber).then(function(page) { self.pageObj = page; self.display() });
-        $("#notes").html(self.notesArray[self.pageNumber-1]);
-        $.ajax({
-            url: "news.php?write&data=Movepage:" + this.pageNumber,
-            cache: false
+        this.pdfObj.getPage(this.pageNumber).then(function (page) {
+            self.pageObj = page;
+            self.display()
         });
+        this.syncPage();
+        this.showNotes();
     },
-    pdfObj : 0,
-	pageNumber : 1,
-	pageObj : 0,
-	scale : 1,
-	scaleAnnotation : 1,
-	notesArray : new Array()
+    pdfObj: 0,
+    pageNumber: 1,
+    pageObj: 0,
+    scale: 1,
+    scaleAnnotation: 1,
+    notesArray: []
 };
 
 
 $(document).ready(function() {
-	// Future: Use get.php?notes AND get.php?slides...
     App.init("content/slides.pdf", "content/notes.txt");
     $("#slide").touchwipe({
         wipeLeft: function() { App.swipe(1); },
         wipeRight: function() { App.swipe(-1); },
-        /*wipeUp: function() { alert("up"); },
-        wipeDown: function() { alert("down"); },*/
         min_move_x: 20,
         min_move_y: 20,
         preventDefaultEvents: true
