@@ -81,7 +81,7 @@ var App = {
 
 $(document).ready(function() {
 	// Future: Use get.php?notes AND get.php?slides...
-    App.init("slides.pdf", "content/notes.txt");
+    App.init("content/slides.pdf", "content/notes.txt");
     $("#slide").touchwipe({
         wipeLeft: function() { App.swipe(1); },
         wipeRight: function() { App.swipe(-1); },

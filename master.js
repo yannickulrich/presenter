@@ -63,6 +63,6 @@ var App = {
 
 
 $(document).ready(function() {
-	App.init("slides.pdf");
+	App.init("content/slides.pdf");
 	window.setInterval("App.update()", 500);
 });
