@@ -1,8 +1,7 @@
 //JS:master.js
 
-PDFJS.workerSrc = 'PDFJS/worker_loader.js';
 var App = {
-	init: function(pdfURL, notesURL) {
+	init: function(notesURL) {
 		self = this;
 		$.ajax({
             url: notesURL,
@@ -13,66 +12,21 @@ var App = {
             $("#notes").html(self.notesArray[self.pageNumber-1]);
         });
 		
-		var self = this;
-        PDFJS.getDocument(pdfURL).then(function(pdf)
-        {
-            self.pdfObj = pdf;
-            pdf.getPage(self.pageNumber).then(function(page) {
-                self.pageObj = page;
-                
-                var viewport = page.getViewport(1);
-                
-                var scaleWidth  = 700 / viewport.width;
-                var scaleHeight = 700 / viewport.height;
-                
-                self.scale = ((scaleWidth > scaleHeight) ? scaleHeight : scaleWidth);
-                self.scaleAnnotation = self.scale;
-                self.display();
-            });
-        });
-    },
-    display : function()
-    {
-        var viewport = this.pageObj.getViewport(this.scale);        
-        var canvas = document.getElementById('slide');
-        var context = canvas.getContext('2d');
-        canvas.height = viewport.height;
-        canvas.width = viewport.width;
-        
-        var renderContext = {
-            canvasContext: context,
-            viewport: viewport
-        };
-        this.pageObj.render(renderContext);
-    },
-    displayAnnotationmode : function()
-    {
-        var viewport = this.pageObj.getViewport(this.scaleAnnotation);        
-        var canvas = document.getElementById('annotation');
-        var context = canvas.getContext('2d');
-        canvas.height = viewport.height;
-        canvas.width = viewport.width;
-        
-        var renderContext = {
-            canvasContext: context,
-            viewport: viewport
-        };
-        this.pageObj.render(renderContext);
+		$("#slide0").css("display", "block");
     },
     swipe : function(dir)
     {
+        $("#slide" + this.pageNumber).css("display", "none");
         this.pageNumber += dir;
-        self = this;
-        this.pdfObj.getPage(this.pageNumber).then(function(page) { self.pageObj = page; self.display() });
-        $("#notes").html(self.notesArray[self.pageNumber-1]);
+        $("#slide" + this.pageNumber).css("display", "block");
+        
+        $("#notes").html(this.notesArray[this.pageNumber-1]);
         $.ajax({
             url: "news.php?write&data=Movepage:" + this.pageNumber,
             cache: false
         });
     },
-    pdfObj : 0,
-	pageNumber : 1,
-	pageObj : 0,
+	pageNumber : 0,
 	scale : 1,
 	scaleAnnotation : 1,
 	notesArray : new Array()
@@ -80,7 +34,7 @@ var App = {
 
 
 $(document).ready(function() {
-    App.init("slides.pdf", "notes.txt");
+    App.init("notes.txt");
     $("#slide").touchwipe({
         wipeLeft: function() { App.swipe(1); },
         wipeRight: function() { App.swipe(-1); },
@@ -90,7 +44,6 @@ $(document).ready(function() {
         min_move_y: 20,
         preventDefaultEvents: true
     }).dblclick(function() {
-        App.displayAnnotationmode();
         $("#wrapperMain").hide();
         $("#wrapperAnnotate").show();
     });
