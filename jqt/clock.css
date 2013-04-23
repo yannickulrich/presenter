@@ -1,0 +1,28 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: "Helvetica Neue",Arial,Helvetica,Geneva,sans-serif;
+}
+#objects > div {
+    background: -webkit-gradient(linear,0% 0%,0% 100%,from(#dadadc),to(#b4b3b8));
+    border-bottom: 1px solid #9a9fa5;
+    border-top: 1px solid #dbdbdd;
+    text-shadow: rgba(255,255,255,.5) 0 1px 0;
+    position: relative;
+}
+.label {
+    display: block;
+    position: absolute;
+    top: 35px;
+    font-weight: bold;
+    color: #333;
+    left: 10px;
+}
+.count {
+    display: block;
+    position: absolute;
+    right: 10px;
+    top: 30px;
+}

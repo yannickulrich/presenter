@@ -1,0 +1,12 @@
+body
+{
+    background-color: gray;
+    font-family: Arial, Verdana, sans-serif;
+    margin: 25px auto;
+    width: 800px;   
+}
+
+#notes
+{
+    color: white;
+}
