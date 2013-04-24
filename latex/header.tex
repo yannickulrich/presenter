@@ -1,0 +1,73 @@
+\documentclass{beamer}
+\usetheme{Montpellier}
+
+
+%Import imports
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[ngerman]{babel}
+\usepackage{amsmath}
+\usepackage{cancel}
+\usepackage{ulem}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{bbm}
+\usepackage{float}
+\usepackage{tabularx}
+\usepackage{hyperref}
+
+%A few colors more than black and white are nice:
+\definecolor{red}{rgb}{1,0,0}
+\definecolor{green}{rgb}{0,1,0}
+\definecolor{blue}{rgb}{0,0,1}
+
+%An image function with and without caption is cool
+\newcommand{\image}[3]{\begin{figure}[!h]\centering\includegraphics[width=#1]{#2}\caption{#3}\end{figure}}
+\newcommand{\nimage}[2]{\begin{figure}[!h]\centering\includegraphics[width=#1]{#2}\end{figure}}
+
+%I'm a physicist and I need divergence, rotation and gradient
+\let\div\undefined
+\newcommand{\div}{\text{div }}
+\newcommand{\rot}{\text{rot }}
+\newcommand{\grad}{\text{grad }}
+
+
+
+
+\usepackage{ifthen}
+\newcommand{\forloop}[5][1]
+{
+\setcounter{#2}{#3}
+\ifthenelse{#4}
+	{
+	#5
+	\addtocounter{#2}{#1}
+	\forloop[#1]{#2}{\value{#2}}{#4}{#5}
+	}
+% Else
+	{
+	}
+}
+
+
+\newcounter{decrement}
+
+
+\newcommand{\mframe}[4]
+{
+    \begin{frame}{#1}{#2}
+        #3
+    \end{frame}
+    \forloop[-1]{decrement}{\value{beamerpauses}}{\value{decrement} > 0}
+    {
+        \immediate\write\outputstream{>#4}
+    }
+    
+}
+
+
+\begin{document}
+\newwrite\outputstream
+\immediate\openout\outputstream=notes.txt
+
