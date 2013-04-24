@@ -35,7 +35,7 @@ var App = {
                 var cmd = cmds[i].split(":");
                 if (cmd[0] == "Movepage")
                 {
-                    self.pageNumber = parseInt(cmd[1]);
+                    self.pageNumber = parseInt(cmd[1]) + 1;
                     self.pdfObj.getPage(self.pageNumber).then(function(page) { self.pageObj = page; self.display() });
                 }
             }
