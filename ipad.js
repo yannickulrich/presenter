@@ -40,6 +40,13 @@ var App = {
             self.imageArray = data.split("\n");
             if (self.imageArray[self.imageArray.length-1] == "")
                 self.imageArray.pop();
+                
+            for(var i = 0; i < self.imageArray.length; i++)
+            {
+                var preloadImage = new Image();
+                preloadImage.src = self.imageArray[i];
+
+            }
             
             self.annotationArray = new Array(self.imageArray.length);
             
