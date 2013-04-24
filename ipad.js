@@ -3,8 +3,8 @@
 //This looks cool: http://ianli.com/sketchpad/
 
 var App = {
-    DRAWING_MODES : {"erase" : 0, "draw": 1},
-    syncPage : function () {
+    DRAWING_MODES: {"erase": 0, "draw": 1},
+    syncPage: function () {
         // Push it to the server
         self = this;
         $.ajax({
@@ -12,7 +12,7 @@ var App = {
             cache: false
         });
     },
-    syncDrawing : function () {
+    syncDrawing: function () {
         // Push it to the server
         self = App;
         $.ajax({
@@ -30,7 +30,7 @@ var App = {
             url: notesURL,
             cache: false
         }).done(function (data) {
-            self.notesArray = data.split("\n\n");
+            self.notesArray = data.split("\n> ");
             self.showNotes();
         });
 	    $.ajax({
@@ -47,9 +47,11 @@ var App = {
         });
         
         this.sketchpad.change(this.syncDrawing);
+        this.syncPage();
+        this.showNotes();
         
     },
-    swipe : function(dir)
+    swipe: function(dir)
     {
         this.annotationArray[this.pageNumber] = this.sketchpad.json(); //Save drawings
         this.pageNumber += dir;
@@ -58,7 +60,7 @@ var App = {
         this.syncPage();
         this.showNotes();
     },
-    selectTool : function(mode)
+    selectTool: function(mode)
     {
         switch (mode)
         {
@@ -66,13 +68,13 @@ var App = {
             case this.DRAWING_MODES.draw: this.sketchpad.editing(true); break;
         }
     },
-	pageNumber : 0,
-	scale : 1,
-	scaleAnnotation : 1,
-	notesArray : new Array(),
-	imageArray : new Array(),
-	sketchpad : null,
-	annotationArray : []
+	pageNumber: 0,
+	scale: 1,
+	scaleAnnotation: 1,
+	notesArray: new Array(),
+	imageArray: new Array(),
+	sketchpad: null,
+	annotationArray: []
 };
 
 
