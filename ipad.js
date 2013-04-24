@@ -64,7 +64,6 @@ var App = {
 
     },
     swipe: function (dir) {
-        if (this.pageNumber + dir + 1 >= this.imageArray.length || this.pageNumber + dir < 0) return;
         this.annotationArray[this.pageNumber] = this.sketchpad.json(); //Save drawings
         this.pageNumber += dir;
         
