@@ -367,13 +367,20 @@
 				var stroke = this.attr();
 				stroke.type = this.type;
 				
+				var str = "";
+				for (var i = 0, n = stroke.path.length; i < n; i++) {
+				    str += stroke.path[i][0] + stroke.path[i][1] + "," + stroke.path[i][2];
+				}
+				
+				stroke.path = str;
+				
 				_action_history.add({
 					type: "erase",
 					stroke: stroke
 				});
-				
 				for (var i = 0, n = _strokes.length; i < n; i++) {
 					var s = _strokes[i];
+					
 					if (equiv(s, stroke)) {
 						_strokes.splice(i, 1);
 					}
