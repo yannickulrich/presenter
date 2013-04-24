@@ -38,6 +38,9 @@ var App = {
             cache: false
         }).done(function (data) {
             self.imageArray = data.split("\n");
+            if (self.imageArray[self.imageArray.length-1] == "")
+                self.imageArray.pop();
+            
             $("#drawing").css("background-image", "url('" + self.imageArray[0] + "')");
         });
         this.sketchpad = Raphael.sketchpad("drawing", {
@@ -55,6 +58,12 @@ var App = {
     {
         this.annotationArray[this.pageNumber] = this.sketchpad.json(); //Save drawings
         this.pageNumber += dir;
+        
+        if (this.pageNumber < 0)
+            this.pageNumber = 0;
+        if (this.pageNumber > this.imageArray.length-1)
+            this.pageNumber = this.imageArray.length-1;
+        
         this.sketchpad.json(this.annotationArray[this.pageNumber]); //Get drawings back
         $("#drawing").css("background-image", "url('" + this.imageArray[this.pageNumber] + "')");
         this.syncPage();
