@@ -24,7 +24,7 @@ var App = {
                 });
                 $("#drawing").attr("style", "").css("-webkit-transform", "scaleX(" + (viewport.width * self.scale / 800.0) + ") scaleY(" + (viewport.height * self.scale / 600.0) + ")");
                 $("#drawing, #drawing svg").css("position", "absolute");
-                window.setInterval("App.update()", 500);
+                window.setInterval("App.update()", 100);
                 $("body").css("width", viewport.width * self.scale).css("margin", "0 auto").css("overflow", "hidden").css("background", "#000");
                 $("#slide").css("border", "none");
             });
