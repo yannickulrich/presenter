@@ -23,11 +23,11 @@ var App = {
     showNotes: function () {
         $("#notes").html(this.notesArray[this.pageNumber]);
     },
-    init: function (pdfURL, notesURL) {
+    init: function () {
         var self = this;
 
         $.ajax({
-            url: notesURL,
+            url: "get.php?notes",
             cache: false
         }).done(function (data) {
             self.notesArray = data.split("\n> ");
@@ -38,18 +38,17 @@ var App = {
             cache: false
         }).done(function (data) {
             self.imageArray = data.split("\n");
-            if (self.imageArray[self.imageArray.length-1] == "")
+            if (self.imageArray[self.imageArray.length - 1] == "")
                 self.imageArray.pop();
-                
-            for(var i = 0; i < self.imageArray.length; i++)
-            {
+
+            for (var i = 0; i < self.imageArray.length; i++) {
                 var preloadImage = new Image();
                 preloadImage.src = self.imageArray[i];
 
             }
-            
+
             self.annotationArray = new Array(self.imageArray.length);
-            
+
             $("#drawing").css("background-image", "url('" + self.imageArray[0] + "')");
         });
         this.sketchpad = Raphael.sketchpad("drawing", {
@@ -57,7 +56,6 @@ var App = {
             height: 600,
             editing: true
         });
-
         this.sketchpad.change(this.syncDrawing);
         this.syncPage();
         this.showNotes();
@@ -66,17 +64,17 @@ var App = {
     swipe: function (dir) {
         this.annotationArray[this.pageNumber] = this.sketchpad.json(); //Save drawings
         this.pageNumber += dir;
-        
+
         if (this.pageNumber < 0)
             this.pageNumber = 0;
-        if (this.pageNumber > this.imageArray.length-1)
-            this.pageNumber = this.imageArray.length-1;
-        
+        if (this.pageNumber > this.imageArray.length - 1)
+            this.pageNumber = this.imageArray.length - 1;
+
         if (this.annotationArray[this.pageNumber] != undefined)
             this.sketchpad.json(this.annotationArray[this.pageNumber]); //Get drawings back
         else
             this.sketchpad.clear();
-            
+
         $("#drawing").css("background-image", "url('" + this.imageArray[this.pageNumber] + "')");
         this.syncPage();
         this.showNotes();
@@ -98,7 +96,7 @@ var App = {
 
 
 $(document).ready(function() {
-    App.init("content/slides.pdf", "content/notes.txt");
+    App.init();
     $("#slide").touchwipe({
         wipeLeft: function() { App.swipe(1); },
         wipeRight: function() { App.swipe(-1); },

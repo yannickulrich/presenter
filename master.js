@@ -2,10 +2,10 @@
 
 PDFJS.workerSrc = 'PDFJS/worker_loader.js';
 var App = {
-    init: function (pdfURL) {
+    init: function () {
         // DO SOMETHING!!
         var self = this;
-        PDFJS.getDocument(pdfURL).then(function (pdf) {
+        PDFJS.getDocument("get.php?slides").then(function (pdf) {
             self.pdfObj = pdf;
             pdf.getPage(self.pageNumber).then(function (page) {
                 self.pageObj = page;
@@ -73,5 +73,5 @@ var App = {
 
 
 $(document).ready(function() {
-	App.init("content/slides.pdf");
+	App.init();
 });
