@@ -10,3 +10,5 @@ touchPoint:f:f          x, y
 
 rmTouch:d               Remove drawing ID
 
+
+The notes in the notes file MUST be seperated by \n\n (TWO Newlines)
