@@ -5,6 +5,11 @@ var App = {
 	init: function(pdfURL) {
 		// DO SOMETHING!!
 		var self = this;
+		this.sketchpad = Raphael.sketchpad("drawing", {
+                width: 800,
+                height: 600,
+                editing: false
+            });
         PDFJS.getDocument(pdfURL).then(function(pdf)
         {
             self.pdfObj = pdf;
@@ -19,6 +24,8 @@ var App = {
                 self.scale = ((scaleWidth > scaleHeight) ? scaleHeight : scaleWidth);
                 self.display();
             });
+            
+            
         });
     },
     update : function()
@@ -32,11 +39,15 @@ var App = {
             var cmds = msg.split(">");
             for (var i = 0; i < cmds.length; i++)
             {
-                var cmd = cmds[i].split(":");
+                var cmd = cmds[i].split("|||");
                 if (cmd[0] == "Movepage")
                 {
                     self.pageNumber = parseInt(cmd[1]) + 1;
                     self.pdfObj.getPage(self.pageNumber).then(function(page) { self.pageObj = page; self.display() });
+                }
+                else if (cmd[0] == "Draw")
+                {
+                    self.sketchpad.json(cmd[1]);
                 }
             }
         });
@@ -58,7 +69,8 @@ var App = {
     pdfObj : 0,
 	pageNumber : 1,
 	pageObj : 0,
-	scale : 1
+	scale : 1,
+	sketchpad : null
 };
 
 

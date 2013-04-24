@@ -8,7 +8,7 @@ var App = {
         // Push it to the server
         self = this;
         $.ajax({
-            url: "news.php?write&data=Movepage:" + self.pageNumber,
+            url: "news.php?write&data=Movepage|||" + self.pageNumber,
             cache: false
         });
     },
@@ -16,7 +16,7 @@ var App = {
         // Push it to the server
         self = App;
         $.ajax({
-            url: "news.php?write&data=Draw:" + self.sketchpad.json(),
+            url: "news.php?write&data=Draw|||" + encodeURIComponent(App.sketchpad.json()),
             cache: false
         });
     },
@@ -41,6 +41,8 @@ var App = {
             if (self.imageArray[self.imageArray.length-1] == "")
                 self.imageArray.pop();
             
+            self.annotationArray = new Array(self.imageArray.length);
+            
             $("#drawing").css("background-image", "url('" + self.imageArray[0] + "')");
         });
         this.sketchpad = Raphael.sketchpad("drawing", {
@@ -64,7 +66,11 @@ var App = {
         if (this.pageNumber > this.imageArray.length-1)
             this.pageNumber = this.imageArray.length-1;
         
-        this.sketchpad.json(this.annotationArray[this.pageNumber]); //Get drawings back
+        if (this.annotationArray[this.pageNumber] != undefined)
+            this.sketchpad.json(this.annotationArray[this.pageNumber]); //Get drawings back
+        else
+            this.sketchpad.clear();
+            
         $("#drawing").css("background-image", "url('" + this.imageArray[this.pageNumber] + "')");
         this.syncPage();
         this.showNotes();

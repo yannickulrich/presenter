@@ -6,6 +6,10 @@
     <head>
         <title>Master</title>
         <script type="text/javascript" src="jquery-min.js"></script>
+        <script type="text/javascript" src="raphael.min.js"></script>
+        <script type="text/javascript" src="json2.js"></script>
+        <script type="text/javascript" src="raphael.sketchpad.js"></script>
+
         
         <script type="text/javascript" src="PDFJS/core.js"></script>
         <script type="text/javascript" src="PDFJS/util.js"></script>
@@ -32,6 +36,7 @@
         <script type="text/javascript" src="master.js"></script>
     </head>
     <body style="margin:0;padding:0;">
-         <canvas id="slide" style="border:1px solid black;"></canvas>
+        <div id="drawing"></div>
+        <canvas id="slide" style="border:1px solid black;"></canvas>
     </body>
 </html>
