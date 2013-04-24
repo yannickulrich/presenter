@@ -25,7 +25,7 @@ var App = {
     {
         self = this;
         $.ajax({
-            url: "get.php?read",
+            url: "news.php?read",
             cache: false
         }).done(function( msg )
         {

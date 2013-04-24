@@ -1,28 +1,13 @@
 <?php
-    if (isset($_GET['read']))
-    {
-        require "news.txt";
-        file_put_contents("news.txt", "");
-    }
-    else if (isset($_GET['write']) && isset($_GET['data']))
-    {
-        echo $_GET['data'];
-        file_put_contents("news.txt", $_GET['data'] . ">", FILE_APPEND);
-    }
-    else if (isset($_GET['images']))
+    if (isset($_GET['slideimages']))
     {
         if ($handle = opendir('./pdfImages/'))
         {
             $i = 0;
             while (false !== ($file = readdir($handle)))
-            {
-                if ($file != "." && $file != "..")
-                {
-                    echo "pdfImages/" . $file . "\n";
-                    $i++;
-                }
-            }
+                if ($file != "." && $file != "..") $i++;
             closedir($handle);
+            for ($j = 0; $j < $i; $j++) echo "pdfImages/slides-" . $j . ".png\n";
         }
     }
 ?>

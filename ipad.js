@@ -8,7 +8,7 @@ var App = {
         // Push it to the server
         self = this;
         $.ajax({
-            url: "get.php?write&data=Movepage:" + self.pageNumber,
+            url: "news.php?write&data=Movepage:" + self.pageNumber,
             cache: false
         });
     },
@@ -16,7 +16,7 @@ var App = {
         // Push it to the server
         self = App;
         $.ajax({
-            url: "get.php?write&data=Draw:" + self.sketchpad.json(),
+            url: "news.php?write&data=Draw:" + self.sketchpad.json(),
             cache: false
         });
     },
@@ -33,14 +33,13 @@ var App = {
             self.notesArray = data.split("\n\n");
             self.showNotes();
         });
-		$.ajax({
-            url: "get.php?images",
+	    $.ajax({
+            url: "get.php?slideimages",
             cache: false
         }).done(function (data) {
             self.imageArray = data.split("\n");
             $("#drawing").css("background-image", "url('" + self.imageArray[0] + "')");
         });
-		//$("#slide0").css("display", "block");
         this.sketchpad = Raphael.sketchpad("drawing", {
             width: 800,
             height: 600,
@@ -53,14 +52,9 @@ var App = {
     swipe : function(dir)
     {
         this.annotationArray[this.pageNumber] = this.sketchpad.json(); //Save drawings
-        //$("#slide" + this.pageNumber).css("display", "none");
         this.pageNumber += dir;
         this.sketchpad.json(this.annotationArray[this.pageNumber]); //Get drawings back
-        //$("#slide" + this.pageNumber).css("display", "block");
         $("#drawing").css("background-image", "url('" + this.imageArray[this.pageNumber] + "')");
-        
-        
-        
         this.syncPage();
         this.showNotes();
     },
@@ -68,31 +62,17 @@ var App = {
     {
         switch (mode)
         {
-            case this.DRAWING_MODES['erase']: this.sketchpad.editing("erase");break;
-            case this.DRAWING_MODES['draw']: this.sketchpad.editing(true); break;
+            case this.DRAWING_MODES.erase: this.sketchpad.editing("erase");break;
+            case this.DRAWING_MODES.draw: this.sketchpad.editing(true); break;
         }
     },
-
-    /*displayAnnotationmode: function () {
-        var viewport = this.pageObj.getViewport(this.scaleAnnotation);
-        var canvas = document.getElementById('annotation');
-        var context = canvas.getContext('2d');
-        canvas.height = viewport.height;
-        canvas.width = viewport.width;
-
-        var renderContext = {
-            canvasContext: context,
-            viewport: viewport
-        };
-        this.pageObj.render(renderContext);
-    },*/
 	pageNumber : 0,
 	scale : 1,
 	scaleAnnotation : 1,
 	notesArray : new Array(),
 	imageArray : new Array(),
 	sketchpad : null,
-	annotationArray : new Array(60)//To automate!
+	annotationArray : []
 };
 
 
@@ -104,17 +84,5 @@ $(document).ready(function() {
         min_move_x: 20,
         min_move_y: 20,
         preventDefaultEvents: true
-    });/*.dblclick(function() {
-        $("#wrapperMain").hide();
-        $("#wrapperAnnotate").show();
-    });*/
-    
-    
+    });
 });
-
-/*function hideAnnotation()
-{
-    App.display();
-    $("#wrapperMain").show();
-    $("#wrapperAnnotate").hide();
-}*/
