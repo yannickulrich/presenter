@@ -5,18 +5,23 @@
 <html>
     <head>
         <title>iPad</title>
+        
         <script type="text/javascript" src="jquery-min.js"></script>
+        <script type="text/javascript" src="raphael.min.js"></script>
+        <script type="text/javascript" src="json2.js"></script>
+        <script type="text/javascript" src="raphael.sketchpad.js"></script>
 
-        <script src="swipe.js"></script>
+        <script type="text/javascript" src="swipe.js"></script>
         <script type="text/javascript" src="ipad.js"></script>
         
-        <link rel="stylesheet" href="ipad.css" type="text/css" charset="utf-8" />
+        <link rel="stylesheet" href="ipad.css" type="text/css"/>
+        
         
     </head>
     <body>
         <div id="wrapperMain">
-        
-            <div id="slide" style="border:1px solid black;">
+            <div id="drawing"></div>
+            <!--<div id="slide" style="border:1px solid black;">
                 <?php
                     if ($handle = opendir('./pdfImages/'))
                     {
@@ -25,21 +30,19 @@
                         {
                             if ($file != "." && $file != "..")
                             {
-                                echo "<img style='display: none;' id='slide" . $i . "' src='pdfImages/" . $file . "' />";
+                                echo "<img style='display: none; height: 300px;' id='slide" . $i . "' src='pdfImages/" . $file . "' />";
                                 $i++;
                             }
                         }
                         closedir($handle);
                     }
                 ?>
-            </div>
-            <a href="javascript:App.swipe(-1)">&lt;&lt;</a><a href="javascript:App.swipe(1)">&gt;&gt;</a>
+                
+            </div>-->
+            <a href="javascript:App.swipe(-1)">&lt;&lt;</a><a href="javascript:App.swipe(1)">&gt;&gt;</a><br>
+            <a href="javascript:App.selectTool(App.DRAWING_MODES['erase'])">Eraser</a>&nbsp;<a href="javascript:App.selectTool(App.DRAWING_MODES['draw'])">Pen</a>
             <div id="notes">
-                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
             </div>
-        </div>
-        <div id="wrapperAnnotate" style="display:none">
-            <a href="javascript:hideAnnotation()">Back</a>
         </div>
     </body>
 </html>

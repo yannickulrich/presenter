@@ -25,7 +25,7 @@ var App = {
     {
         self = this;
         $.ajax({
-            url: "news.php?read",
+            url: "get.php?read",
             cache: false
         }).done(function( msg )
         {
@@ -63,6 +63,6 @@ var App = {
 
 
 $(document).ready(function() {
-	App.init("slides.pdf");
+	App.init("content/slides.pdf");
 	window.setInterval("App.update()", 500);
 });

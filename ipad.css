@@ -2,10 +2,14 @@ body
 {
     background-color: gray;
     font-family: Arial, Verdana, sans-serif;
-    margin: 25px auto;
-    width: 800px;   
+    margin: 0;
+    width: 100%;   
 }
-
+#wrapperMain
+{
+    width: 800px;
+    margin:  0 auto;
+}
 #notes
 {
     color: white;
