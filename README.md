@@ -1,9 +1,7 @@
 # Presenter
 
-The commands are:
+Presenter is a tool for presentations. While the slides are shown on the beamer, you control the presentation via an iPad while seeing your notes and highlight important things on the slides.
 
-Movepage|||d              d page to move (0 == first page)
+## Internals
 
-Draw|||s                  s: json encoded drawing
-
-The notes in the notes file MUST be seperated by \n\n (TWO Newlines)
+The Notes have to be seperated by "\n> ".
