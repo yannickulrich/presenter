@@ -38,8 +38,7 @@ var files = [
   'worker.js',
   'jpx.js',
   'jbig2.js',
-  'bidi.js',
-  '../external/jpgjs/jpg.js'
+  'bidi.js'
 ];
 
 // Load all the files.
