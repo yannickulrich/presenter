@@ -7,18 +7,12 @@ var App = {
     syncPage: function () {
         // Push it to the server
         self = this;
-        $.ajax({
-            url: "news.php?write&data=Movepage|||" + self.pageNumber,
-            cache: false
-        });
+        $.post("news.php?write", { data: "Movepage|||" + self.pageNumber } );
     },
     syncDrawing: function () {
         // Push it to the server
         self = App;
-        $.ajax({
-            url: "news.php?write&data=Draw|||" + encodeURIComponent(App.sketchpad.json()),
-            cache: false
-        });
+        $.post("news.php?write", { data: "Draw|||" + App.sketchpad.json() } );
     },
     showNotes: function () {
         $("#notes").html(this.notesArray[this.pageNumber]);

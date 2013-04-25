@@ -4,8 +4,8 @@
         require "news.txt";
         file_put_contents("news.txt", "");
     }
-    else if (isset($_GET['write']) && isset($_GET['data']))
+    else if (isset($_GET['write']) && isset($_REQUEST['data']))
     {
-        file_put_contents("news.txt", $_GET['data'] . ">", FILE_APPEND);
+        file_put_contents("news.txt", $_REQUEST['data'] . ">", FILE_APPEND);
     }
 ?>
