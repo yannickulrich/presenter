@@ -7,6 +7,15 @@ var App = {
         var self = this;
         PDFJS.getDocument("get.php?slides").then(function (pdf) {
             self.pdfObj = pdf;
+            
+            self.listOfPageObj = new Array(pdf.pdfInfo.numPages);
+            
+            for(var i = 1; i<= pdf.pdfInfo.numPages; i++)
+            {
+                pdf.getPage(i).then(function (page) { 
+                    self.listOfPageObj[page.pageNumber-1] = page;
+                });
+            }
             pdf.getPage(self.pageNumber).then(function (page) {
                 self.pageObj = page;
 
@@ -43,8 +52,10 @@ var App = {
             for (var i = 0; i < cmds.length; i++) {
                 var cmd = cmds[i].split("|||");
                 if (cmd[0] == "Movepage") {
-                    self.pageNumber = parseInt(cmd[1]) + 1;
-                    self.pdfObj.getPage(self.pageNumber).then(function (page) { self.pageObj = page; self.display() });
+                    self.pageNumber = parseInt(cmd[1]);
+                    //self.pdfObj.getPage(self.pageNumber).then(function (page) { self.pageObj = page; self.display() });
+                    self.pageObj = self.listOfPageObj[self.pageNumber];
+                    self.display();
                 }
                 else if (cmd[0] == "Draw") {
                     self.sketchpad.json(cmd[1]);
@@ -70,7 +81,8 @@ var App = {
     pageNumber: 1,
     pageObj: 0,
     scale: 1,
-    sketchpad: null
+    sketchpad: null,
+    listOfPageObj : null
 };
 
 
