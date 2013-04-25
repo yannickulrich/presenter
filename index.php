@@ -2,7 +2,7 @@
     //This file is for auth!
     session_start();
     
-    if (isset($_GET['submit']))
+    if (isset($_GET['submit']) && isset($_POST['passwd']))
     {
         include("auth.php");
         if (md5($_POST['passwd']) == $authhash)
@@ -13,18 +13,32 @@
     
     if (isset($_SESSION['passwd']))
     {
-        if ((bool) strpos($_SERVER['HTTP_USER_AGENT'],'iPad'))
-        {
-            header("Location: iPad.php");
-        }
+        if (((bool) strpos($_SERVER['HTTP_USER_AGENT'],'iPad')) || isset($_GET["ipad"]))
+            header("Location: ipad.php");
         else
-        {
             header("Location: master.php");
-        }
         exit;
     }
 ?>
-<form action="?submit" method="post">
-    <input name="passwd" type="password" size="12" maxlength="12">
-    <input type="submit">
-</form>
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Presenter - <?php 
+            if (((bool) strpos($_SERVER['HTTP_USER_AGENT'],'iPad')) || isset($_GET["ipad"])) echo "iPad-Client";
+            else echo "Master"; ?></title>
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta id="viewport" name="viewport" content="initial-scale=1.0, user-scalable=no">
+        <link rel="stylesheet" href="index.css" type="text/css"/>
+        <script type="text/javascript" src="jquery-min.js"></script>
+        <script type="text/javascript">$(function(){$(document).bind('touchmove', false);})</script>
+    </head>
+    <body>
+        <div id="wrapperMain">
+            <h1>PRESENTER</h1><br/>
+            <form action="?submit<?php if (isset($_GET["ipad"])) echo "&ipad";?>" method="post">
+                <input name="passwd" type="password" size="12" maxlength="12"/>
+                <input type="submit" value="Login" />
+            </form> 
+        </div>
+    </body>
+</html>
