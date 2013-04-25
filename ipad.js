@@ -3,7 +3,7 @@
 //This looks cool: http://ianli.com/sketchpad/
 
 var App = {
-    DRAWING_MODES: { "erase": 0, "draw": 1 },
+    DRAWING_MODES: { "erase": 0, "draw": 1, "none": 2 },
     syncPage: function () {
         // Push it to the server
         self = this;
@@ -19,7 +19,8 @@ var App = {
     },
     init: function () {
         var self = this;
-
+        
+        
         $.ajax({
             url: "get.php?notes",
             cache: false
@@ -50,6 +51,8 @@ var App = {
             height: 600,
             editing: true
         });
+        this.selectTool(this.DRAWING_MODES["none"]);
+        
         this.sketchpad.change(this.syncDrawing);
         this.syncPage();
         this.showNotes();
@@ -74,10 +77,13 @@ var App = {
         this.showNotes();
     },
     selectTool: function (mode) {
+        this.currentDrawingMode = mode;
         switch (mode) {
             case this.DRAWING_MODES.erase: this.sketchpad.editing("erase"); break;
             case this.DRAWING_MODES.draw: this.sketchpad.editing(true); break;
+            case this.DRAWING_MODES.none: this.sketchpad.editing(false); break;
         }
+        $("#drawing").css("background-image", "url('" + this.imageArray[this.pageNumber] + "')");
     },
     pageNumber: 0,
     scale: 1,
@@ -85,17 +91,24 @@ var App = {
     notesArray: new Array(),
     imageArray: new Array(),
     sketchpad: null,
-    annotationArray: []
+    annotationArray: [],
+    currentDrawingMode: 0
 };
 
 
 $(document).ready(function() {
     App.init();
-    $("#slide").touchwipe({
+    $("#drawing").touchwipe({
         wipeLeft: function() { App.swipe(1); },
         wipeRight: function() { App.swipe(-1); },
         min_move_x: 20,
         min_move_y: 20,
         preventDefaultEvents: true
+    }).dblclick(function(){
+        if (App.currentDrawingMode != App.DRAWING_MODES.none)
+            App.selectTool(App.DRAWING_MODES.none);
+        else
+            App.selectTool(App.DRAWING_MODES.draw);
+        
     });
 });
