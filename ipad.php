@@ -30,5 +30,6 @@
                 </tr>
                 <tr><td id="notes" colspan="5"><div class="inner"></div></td></tr>
             </table>
+        </div>
     </body>
 </html>
