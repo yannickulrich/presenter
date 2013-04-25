@@ -1,16 +1,52 @@
 body
 {
-    background-color: gray;
+    background-color: #111;
     font-family: Arial, Verdana, sans-serif;
     margin: 0;
     width: 100%;   
 }
+table, td, tr, tbody {
+    margin: 0;
+    border: none;
+    padding: 0;
+    border-collapse: collapse;
+}
 #wrapperMain
 {
-    width: 800px;
-    margin:  0 auto;
+    width: 100%;
+    margin:  10px auto 0 auto;
 }
-#notes
-{
-    color: white;
+#mainTable {
+    width: 100%;
+}
+#slide, #drawing {
+    width: 800px;
+    height: 600px;
+}
+#rightArea, #prevSlide {
+    width: 80px;
+    min-width: 80px;
+    background: #888;
+    height: 600px;
+    padding: 0;
+}
+#rightArea #pen {
+    border-bottom: 1px solid #ddd;
+}
+#rightArea #pen, #rightArea #erase {
+    background: #888;
+    width: 80px;
+    height: 79px;
+}
+#rightArea #nextSlide {
+    width: 80px;
+    height: 440px;
+    border-bottom: 1px solid #ddd;
+}
+#rightArea #pen.active, #rightArea #erase.active {
+    background: #ccc;
+}
+#notes .inner {
+    margin: 10px 10px;
+    color: #fff;
 }

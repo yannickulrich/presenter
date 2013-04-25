@@ -5,22 +5,22 @@
 var App = {
     DRAWING_MODES: { "erase": 0, "draw": 1, "none": 2 },
     syncPage: function () {
-        // Push it to the server
-        self = this;
-        $.post("news.php?write", { data: "Movepage|||" + self.pageNumber } );
+        $.post("news.php?write", { data: "Movepage|||" + App.pageNumber });
     },
     syncDrawing: function () {
-        // Push it to the server
-        self = App;
-        $.post("news.php?write", { data: "Draw|||" + App.sketchpad.json() } );
+        $.post("news.php?write", { data: "Draw|||" + App.sketchpad.json() });
     },
     showNotes: function () {
-        $("#notes").html(this.notesArray[this.pageNumber]);
+        $("#notes .inner").html(this.notesArray[this.pageNumber]);
+    },
+    updateDesign: function () {
+        var totalw = window.innerWidth;
+        var totalh = window.innerHeight;
+        var spaceH = (totalw - 800 - 160) / 2;
+        $(".spaceH").css("width", spaceH);
     },
     init: function () {
         var self = this;
-        
-        
         $.ajax({
             url: "get.php?notes",
             cache: false
@@ -35,15 +35,9 @@ var App = {
             self.imageArray = data.split("\n");
             if (self.imageArray[self.imageArray.length - 1] == "")
                 self.imageArray.pop();
-
-            for (var i = 0; i < self.imageArray.length; i++) {
-                var preloadImage = new Image();
-                preloadImage.src = self.imageArray[i];
-
-            }
-
+            for (var i = 0; i < self.imageArray.length; i++)
+                new Image().src = self.imageArray[i];
             self.annotationArray = new Array(self.imageArray.length);
-
             $("#drawing").css("background-image", "url('" + self.imageArray[0] + "')");
         });
         this.sketchpad = Raphael.sketchpad("drawing", {
@@ -51,15 +45,27 @@ var App = {
             height: 600,
             editing: true
         });
-        this.selectTool(this.DRAWING_MODES["none"]);
-        
+        this.selectTool(this.DRAWING_MODES.none);
+
         this.sketchpad.change(this.syncDrawing);
         this.syncPage();
         this.showNotes();
+        $(window).resize(this.updateDesign);
+        this.updateDesign();
 
+        $("#prevSlide").on("mouseup", function () { self.swipe(-1); });
+        $("#nextSlide").on("mouseup", function () { self.swipe(1); });
+        $("#pen").on("mouseup", function () {
+            if (self.currentDrawingMode != self.DRAWING_MODES.draw) self.selectTool(self.DRAWING_MODES.draw);
+            else self.selectTool(self.DRAWING_MODES.none);
+        });
+        $("#erase").on("mouseup", function () {
+            if (self.currentDrawingMode != self.DRAWING_MODES.erase) self.selectTool(self.DRAWING_MODES.erase);
+            else self.selectTool(self.DRAWING_MODES.none);
+        });
     },
-    swipe: function (dir) {
-        if (this.currentDrawingMode != this.DRAWING_MODES.none) return;
+    swipe: function (dir, swiping) {
+        if (swiping && this.currentDrawingMode != this.DRAWING_MODES.none) return;
         this.annotationArray[this.pageNumber] = this.sketchpad.json(); //Save drawings
         this.pageNumber += dir;
 
@@ -79,11 +85,13 @@ var App = {
     },
     selectTool: function (mode) {
         this.currentDrawingMode = mode;
+        $(".active").removeClass("active");
         switch (mode) {
-            case this.DRAWING_MODES.erase: this.sketchpad.editing("erase"); break;
-            case this.DRAWING_MODES.draw: this.sketchpad.editing(true); break;
+            case this.DRAWING_MODES.erase: this.sketchpad.editing("erase"); $("#erase").addClass("active"); break;
+            case this.DRAWING_MODES.draw: this.sketchpad.editing(true); $("#pen").addClass("active"); break;
             case this.DRAWING_MODES.none: this.sketchpad.editing(false); break;
         }
+
         $("#drawing").css("background-image", "url('" + this.imageArray[this.pageNumber] + "')");
     },
     pageNumber: 0,
@@ -97,23 +105,14 @@ var App = {
 };
 
 
-$(document).ready(function() {
+$(document).ready(function () {
+    $(document).bind('touchmove', false);
     App.init();
     $("#drawing").touchwipe({
-        wipeLeft: function() { App.swipe(1); },
-        wipeRight: function() { App.swipe(-1); },
+        wipeLeft: function () { App.swipe(1, true); },
+        wipeRight: function () { App.swipe(-1, true); },
         min_move_x: 20,
         min_move_y: 20,
         preventDefaultEvents: true
-    }).doubletap(
-    function(event){
-        if (App.currentDrawingMode != App.DRAWING_MODES.none)
-            App.selectTool(App.DRAWING_MODES.none);
-        else
-            App.selectTool(App.DRAWING_MODES.draw);
-
-    },
-    function(event){},
-    400
-);
+    })
 });

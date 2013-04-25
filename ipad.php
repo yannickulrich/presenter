@@ -4,7 +4,9 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>iPad</title>
+        <title>Presenter - iPad Client</title>
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta id="viewport" name="viewport" content="initial-scale=1.0, user-scalable=no">
         
         <script type="text/javascript" src="jquery-min.js"></script>
         <script type="text/javascript" src="raphael.min.js"></script>
@@ -16,34 +18,17 @@
         <script type="text/javascript" src="ipad.js"></script>
         
         <link rel="stylesheet" href="ipad.css" type="text/css"/>
+
         
         
     </head>
     <body>
         <div id="wrapperMain">
-            <div id="drawing"></div>
-            <!--<div id="slide" style="border:1px solid black;">
-                <?php
-                    if ($handle = opendir('./pdfImages/'))
-                    {
-                        $i = 0;
-                        while (false !== ($file = readdir($handle)))
-                        {
-                            if ($file != "." && $file != "..")
-                            {
-                                echo "<img style='display: none; height: 300px;' id='slide" . $i . "' src='pdfImages/" . $file . "' />";
-                                $i++;
-                            }
-                        }
-                        closedir($handle);
-                    }
-                ?>
-                
-            </div>-->
-            <a href="javascript:App.swipe(-1)">&lt;&lt;</a><a href="javascript:App.swipe(1)">&gt;&gt;</a><br>
-            <a href="javascript:App.selectTool(App.DRAWING_MODES['erase'])">Eraser</a>&nbsp;<a href="javascript:App.selectTool(App.DRAWING_MODES['draw'])">Pen</a>
-            <div id="notes">
-            </div>
-        </div>
+            <table id="mainTable">
+                <tr>
+                    <td id="prevSlide"></td><td class="spaceH"></td><td id="slide"><div id="drawing"></div></td><td class="spaceH"></td><td id="rightArea"><table><tr><td id="nextSlide" colspan="2"></td></tr><tr><td id="pen"></td></tr><tr><td id="erase"></td></tr></table></td>
+                </tr>
+                <tr><td id="notes" colspan="5"><div class="inner"></div></td></tr>
+            </table>
     </body>
 </html>
