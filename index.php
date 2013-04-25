@@ -14,19 +14,20 @@
     if (isset($_SESSION['passwd']))
     {
         if (((bool) strpos($_SERVER['HTTP_USER_AGENT'],'iPad')) || isset($_GET["ipad"]))
-            header("Location: ipad.php");
+            require("ipad.php");
         else
-            header("Location: master.php");
+            require("master.php");
         exit;
     }
 ?>
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Presenter - <?php 
-            if (((bool) strpos($_SERVER['HTTP_USER_AGENT'],'iPad')) || isset($_GET["ipad"])) echo "iPad-Client";
-            else echo "Master"; ?></title>
+        <title>Presenter<?php 
+            if (((bool) strpos($_SERVER['HTTP_USER_AGENT'],'iPad')) || isset($_GET["ipad"])) echo "";
+            else echo " - Master"; ?></title>
         <meta name="apple-mobile-web-app-capable" content="yes" />
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="touch-icon.png" />
         <meta id="viewport" name="viewport" content="initial-scale=1.0, user-scalable=no">
         <link rel="stylesheet" href="index.css" type="text/css"/>
         <script type="text/javascript" src="jquery-min.js"></script>
