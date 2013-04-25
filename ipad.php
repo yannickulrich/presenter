@@ -11,6 +11,7 @@
         <script type="text/javascript" src="json2.js"></script>
         <script type="text/javascript" src="raphael.sketchpad.js"></script>
 
+        <script type="text/javascript" src="doubletab.js"></script>
         <script type="text/javascript" src="swipe.js"></script>
         <script type="text/javascript" src="ipad.js"></script>
         

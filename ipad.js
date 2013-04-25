@@ -59,6 +59,7 @@ var App = {
 
     },
     swipe: function (dir) {
+        if (this.currentDrawingMode != this.DRAWING_MODES.none) return;
         this.annotationArray[this.pageNumber] = this.sketchpad.json(); //Save drawings
         this.pageNumber += dir;
 
@@ -104,11 +105,15 @@ $(document).ready(function() {
         min_move_x: 20,
         min_move_y: 20,
         preventDefaultEvents: true
-    }).dblclick(function(){
+    }).doubletap(
+    function(event){
         if (App.currentDrawingMode != App.DRAWING_MODES.none)
             App.selectTool(App.DRAWING_MODES.none);
         else
             App.selectTool(App.DRAWING_MODES.draw);
-        
-    });
+
+    },
+    function(event){},
+    400
+);
 });
