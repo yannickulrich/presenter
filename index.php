@@ -20,7 +20,7 @@
         if (((bool) strpos($_SERVER['HTTP_USER_AGENT'],'iPad')) || isset($_GET["ipad"]))
             require("ipad.php");
         else
-            require("master.php");
+            require("viewer.php");
         exit;
     }
 ?>
