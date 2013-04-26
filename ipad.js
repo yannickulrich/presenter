@@ -11,7 +11,9 @@ var App = {
         $.post("news.php?write", { data: App.sketchpad.json(), mode: 2 });
     },
     showNotes: function () {
-        $("#notes .inner").html(this.notesArray[this.pageNumber]);
+        if (this.notesArray[this.pageNumber] != undefined)
+            MathJax.Hub.queue.Push(["Text", MathJax.Hub.getAllJax()[0],"\\displaystyle{\\text{" + this.notesArray[this.pageNumber] + "}}"]);
+        //$("#notes .inner").html(this.notesArray[this.pageNumber]);
     },
     updateDesign: function () {
         var totalw = window.innerWidth;
@@ -49,7 +51,7 @@ var App = {
 
         this.sketchpad.change(this.syncDrawing);
         this.syncPage();
-        this.showNotes();
+        window.setTimeout("App.showNotes()", 1000);
         $(window).resize(this.updateDesign);
         this.updateDesign();
 

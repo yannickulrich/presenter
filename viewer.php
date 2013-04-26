@@ -5,35 +5,35 @@
 <html>
     <head>
         <title>Master</title>
-        <script type="text/javascript" src="jquery-min.js"></script>
-        <script type="text/javascript" src="raphael.min.js"></script>
-        <script type="text/javascript" src="json2.js"></script>
-        <script type="text/javascript" src="raphael.sketchpad.js"></script>
+        <script type="text/javascript" src="lib/jquery-min.js"></script>
+        <script type="text/javascript" src="lib/raphael.min.js"></script>
+        <script type="text/javascript" src="lib/json2.js"></script>
+        <script type="text/javascript" src="lib/raphael.sketchpad.js"></script>
 
         
-        <script type="text/javascript" src="PDFJS/core.js"></script>
-        <script type="text/javascript" src="PDFJS/util.js"></script>
-        <script type="text/javascript" src="PDFJS/api.js"></script>
-        <script type="text/javascript" src="PDFJS/canvas.js"></script>
-        <script type="text/javascript" src="PDFJS/obj.js"></script>
-        <script type="text/javascript" src="PDFJS/function.js"></script>
-        <script type="text/javascript" src="PDFJS/charsets.js"></script>
-        <script type="text/javascript" src="PDFJS/cidmaps.js"></script>
-        <script type="text/javascript" src="PDFJS/colorspace.js"></script>
-        <script type="text/javascript" src="PDFJS/crypto.js"></script>
-        <script type="text/javascript" src="PDFJS/evaluator.js"></script>
-        <script type="text/javascript" src="PDFJS/fonts.js"></script>
-        <script type="text/javascript" src="PDFJS/glyphlist.js"></script>
-        <script type="text/javascript" src="PDFJS/image.js"></script>
-        <script type="text/javascript" src="PDFJS/metrics.js"></script>
-        <script type="text/javascript" src="PDFJS/parser.js"></script>
-        <script type="text/javascript" src="PDFJS/pattern.js"></script>
-        <script type="text/javascript" src="PDFJS/stream.js"></script>
-        <script type="text/javascript" src="PDFJS/worker.js"></script>
-        <script type="text/javascript" src="PDFJS/jpx.js"></script>
-        <script type="text/javascript" src="PDFJS/jbig2.js"></script>
+        <script type="text/javascript" src="lib/PDFJS/core.js"></script>
+        <script type="text/javascript" src="lib/PDFJS/util.js"></script>
+        <script type="text/javascript" src="lib/PDFJS/api.js"></script>
+        <script type="text/javascript" src="lib/PDFJS/canvas.js"></script>
+        <script type="text/javascript" src="lib/PDFJS/obj.js"></script>
+        <script type="text/javascript" src="lib/PDFJS/function.js"></script>
+        <script type="text/javascript" src="lib/PDFJS/charsets.js"></script>
+        <script type="text/javascript" src="lib/PDFJS/cidmaps.js"></script>
+        <script type="text/javascript" src="lib/PDFJS/colorspace.js"></script>
+        <script type="text/javascript" src="lib/PDFJS/crypto.js"></script>
+        <script type="text/javascript" src="lib/PDFJS/evaluator.js"></script>
+        <script type="text/javascript" src="lib/PDFJS/fonts.js"></script>
+        <script type="text/javascript" src="lib/PDFJS/glyphlist.js"></script>
+        <script type="text/javascript" src="lib/PDFJS/image.js"></script>
+        <script type="text/javascript" src="lib/PDFJS/metrics.js"></script>
+        <script type="text/javascript" src="lib/PDFJS/parser.js"></script>
+        <script type="text/javascript" src="lib/PDFJS/pattern.js"></script>
+        <script type="text/javascript" src="lib/PDFJS/stream.js"></script>
+        <script type="text/javascript" src="lib/PDFJS/worker.js"></script>
+        <script type="text/javascript" src="lib/PDFJS/jpx.js"></script>
+        <script type="text/javascript" src="lib/PDFJS/jbig2.js"></script>
 
-        <script type="text/javascript" src="master.js"></script>
+        <script type="text/javascript" src="viewer.js"></script>
     </head>
     <body style="margin:0;padding:0;">
         <div id="drawing"></div>

@@ -1,6 +1,6 @@
 //JS:master.js
 
-PDFJS.workerSrc = 'PDFJS/worker_loader.js';
+PDFJS.workerSrc = 'lib/PDFJS/worker_loader.js';
 var App = {
     init: function () {
         // DO SOMETHING!!
