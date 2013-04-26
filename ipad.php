@@ -8,15 +8,14 @@
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta id="viewport" name="viewport" content="initial-scale=1.0, user-scalable=no">
         
-        <script type="text/javascript" src="jquery-min.js"></script>
-        <script type="text/javascript" src="raphael.min.js"></script>
-        <script type="text/javascript" src="json2.js"></script>
-        <script type="text/javascript" src="raphael.sketchpad.js"></script>
-
-        <script type="text/javascript" src="doubletab.js"></script>
-        <script type="text/javascript" src="swipe.js"></script>
-        <script type="text/javascript" src="ipad.js"></script>
+        <script type="text/javascript" src="lib/jquery-min.js"></script>
+        <script type="text/javascript" src="lib/raphael.min.js"></script>
+        <script type="text/javascript" src="lib/json2.js"></script>
+        <script type="text/javascript" src="lib/raphael.sketchpad.js"></script>
+        <script type="text/javascript" src="lib/doubletab.js"></script>
+        <script type="text/javascript" src="lib/swipe.js"></script>
         
+        <script type="text/javascript" src="ipad.js"></script>
         <link rel="stylesheet" href="ipad.css" type="text/css"/>
 
         
