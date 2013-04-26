@@ -1,5 +1,7 @@
 <?php
-    //This file is for auth!
+    // The master doesn't need any auth.    
+    if (!((bool) strpos($_SERVER['HTTP_USER_AGENT'],'iPad')) && !isset($_GET["ipad"]))
+        require("master.php");
     session_start();
     include("auth.php");
     if (isset($_GET['submit']) && isset($_POST['passwd']))
@@ -10,7 +12,7 @@
             $_SESSION['passwd'] = md5($_POST['passwd']);
         }
     }
-    if ($_SESSION['passwd'] == $authhash)
+    if (isset($_SESSION['passwd']) && $_SESSION['passwd'] == $authhash)
     {
         if (((bool) strpos($_SERVER['HTTP_USER_AGENT'],'iPad')) || isset($_GET["ipad"]))
             require("ipad.php");
