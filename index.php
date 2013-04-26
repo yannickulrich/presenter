@@ -10,7 +10,6 @@
             $_SESSION['passwd'] = md5($_POST['passwd']);
         }
     }
-    
     if ($_SESSION['passwd'] == $authhash)
     {
         if (((bool) strpos($_SERVER['HTTP_USER_AGENT'],'iPad')) || isset($_GET["ipad"]))
