@@ -2,7 +2,7 @@
     // The master doesn't need any auth.    
     if (!((bool) strpos($_SERVER['HTTP_USER_AGENT'],'iPad')) && !isset($_GET["ipad"]))
     {
-        require("master.php");
+        require("viewer.php");
         exit;
     }
     session_start();

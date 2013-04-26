@@ -1,1 +1,1 @@
-convert -density 150 -quality 100 -resize 800x slides.pdf slides.png
+convert -density 150 -quality 100 -resize 800x $1.pdf $2.png
