@@ -1,7 +1,10 @@
 <?php
     // The master doesn't need any auth.    
     if (!((bool) strpos($_SERVER['HTTP_USER_AGENT'],'iPad')) && !isset($_GET["ipad"]))
+    {
         require("master.php");
+        exit;
+    }
     session_start();
     include("auth.php");
     if (isset($_GET['submit']) && isset($_POST['passwd']))
