@@ -1,17 +1,17 @@
 <?php
     //This file is for auth!
     session_start();
-    
+    include("auth.php");
     if (isset($_GET['submit']) && isset($_POST['passwd']))
     {
-        include("auth.php");
+        
         if (md5($_POST['passwd']) == $authhash)
         {
             $_SESSION['passwd'] = md5($_POST['passwd']);
         }
     }
     
-    if (isset($_SESSION['passwd']))
+    if ($_SESSION['passwd'] == $authhash)
     {
         if (((bool) strpos($_SERVER['HTTP_USER_AGENT'],'iPad')) || isset($_GET["ipad"]))
             require("ipad.php");
