@@ -48,19 +48,11 @@ var App = {
             url: "news.php?read",
             cache: false
         }).done(function (msg) {
-            var cmds = msg.split(">");
-            for (var i = 0; i < cmds.length; i++) {
-                var cmd = cmds[i].split("|||");
-                if (cmd[0] == "Movepage") {
-                    self.pageNumber = parseInt(cmd[1]);
-                    //self.pdfObj.getPage(self.pageNumber).then(function (page) { self.pageObj = page; self.display() });
-                    self.pageObj = self.listOfPageObj[self.pageNumber];
-                    self.display();
-                }
-                else if (cmd[0] == "Draw") {
-                    self.sketchpad.json(cmd[1]);
-                }
-            }
+            var cmd = msg.split(">");
+            self.sketchpad.json(cmd[1]);
+            self.pageNumber = parseInt(cmd[0]);
+            self.pageObj = self.listOfPageObj[self.pageNumber];
+            self.display();
         });
     },
     display: function () {
