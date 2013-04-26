@@ -5,10 +5,10 @@
 var App = {
     DRAWING_MODES: { "erase": 0, "draw": 1, "none": 2 },
     syncPage: function () {
-        $.post("news.php?write", { data: "Movepage|||" + App.pageNumber });
+        $.post("news.php?write", { data: App.pageNumber, mode: 1 });
     },
     syncDrawing: function () {
-        $.post("news.php?write", { data: "Draw|||" + App.sketchpad.json() });
+        $.post("news.php?write", { data: App.sketchpad.json(), mode: 2 });
     },
     showNotes: function () {
         $("#notes .inner").html(this.notesArray[this.pageNumber]);
