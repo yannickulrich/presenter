@@ -18,7 +18,14 @@
         <script type="text/javascript" src="ipad.js"></script>
         <link rel="stylesheet" href="ipad.css" type="text/css"/>
 
-        
+        <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({
+            extensions: ["tex2jax.js"],
+            jax: ["input/TeX","output/HTML-CSS"],
+            tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+          });
+        </script>
+        <script type="text/javascript" src="lib/MathJax/MathJax.js"></script>
         
     </head>
     <body>
@@ -27,7 +34,7 @@
                 <tr>
                     <td id="prevSlide"></td><td class="spaceH"></td><td id="slide"><div id="drawing"></div></td><td class="spaceH"></td><td id="rightArea"><table><tr><td id="nextSlide" colspan="2"></td></tr><tr><td id="pen"></td></tr><tr><td id="erase"></td></tr></table></td>
                 </tr>
-                <tr><td id="notes" colspan="5"><div class="inner"></div></td></tr>
+                <tr><td id="notes" colspan="5"><div class="inner">$${}$$</div></td></tr>
             </table>
         </div>
     </body>

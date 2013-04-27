@@ -1,5 +1,5 @@
 Hallo, ich werde jetzt eine Praesentation ueber die Maxwell'schen Gleichung halten
-> Ok, das ist mein Inhalt
+> Ok, das ist mein Inhalt $a^2+b^2=c^2$
 > A
 > B
 > A
