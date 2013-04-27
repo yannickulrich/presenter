@@ -33,7 +33,7 @@
         <script type="text/javascript" src="lib/PDFJS/jpx.js"></script>
         <script type="text/javascript" src="lib/PDFJS/jbig2.js"></script>
 
-        <script type="text/javascript" src="viewer.js"></script>
+        <script type="text/javascript" src="viewer/viewer.js"></script>
     </head>
     <body style="margin:0;padding:0;">
         <div id="drawing"></div>

@@ -1,12 +1,19 @@
 <?php
+    session_start();
+    $_SESSION['pdf'] = "slides.pdf";
+    $_SESSION['notes'] = "notes.txt";
+    
+    
+    
     // The master doesn't need any auth.    
     if (!((bool) strpos($_SERVER['HTTP_USER_AGENT'],'iPad')) && !isset($_GET["ipad"]))
     {
-        require("viewer.php");
+        require("viewer/viewer.php");
         exit;
     }
-    session_start();
-    include("auth.php");
+    
+    
+    include("tools/auth.php");
     if (isset($_GET['submit']) && isset($_POST['passwd']))
     {
         
@@ -18,9 +25,9 @@
     if (isset($_SESSION['passwd']) && $_SESSION['passwd'] == $authhash)
     {
         if (((bool) strpos($_SERVER['HTTP_USER_AGENT'],'iPad')) || isset($_GET["ipad"]))
-            require("ipad.php");
+            require("ipad/ipad.php");
         else
-            require("viewer.php");
+            require("viewer/viewer.php");
         exit;
     }
 ?>

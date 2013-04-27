@@ -5,10 +5,10 @@
 var App = {
     DRAWING_MODES: { "erase": 0, "draw": 1, "none": 2 },
     syncPage: function () {
-        $.post("news.php?write", { data: App.pageNumber, mode: 1 });
+        $.post("comm/news.php?write", { data: App.pageNumber, mode: 1 });
     },
     syncDrawing: function () {
-        $.post("news.php?write", { data: App.sketchpad.json(), mode: 2 });
+        $.post("comm/news.php?write", { data: App.sketchpad.json(), mode: 2 });
     },
     showNotes: function () {
         if (this.notesArray[this.pageNumber] != undefined)
@@ -24,14 +24,14 @@ var App = {
     init: function () {
         var self = this;
         $.ajax({
-            url: "get.php?notes",
+            url: "comm/get.php?notes",
             cache: false
         }).done(function (data) {
             self.notesArray = data.split("\n> ");
             self.showNotes();
         });
         $.ajax({
-            url: "get.php?slideimages",
+            url: "comm/get.php?slideimages",
             cache: false
         }).done(function (data) {
             self.imageArray = data.split("\n");

@@ -5,7 +5,7 @@ var App = {
     init: function () {
         // DO SOMETHING!!
         var self = this;
-        PDFJS.getDocument("get.php?slides").then(function (pdf) {
+        PDFJS.getDocument("comm/get.php?slides").then(function (pdf) {
             self.pdfObj = pdf;
             
             self.listOfPageObj = new Array(pdf.pdfInfo.numPages);
@@ -45,7 +45,7 @@ var App = {
     update: function () {
         var self = this;
         $.ajax({
-            url: "news.php?read",
+            url: "comm/news.php?read",
             cache: false
         }).done(function (msg) {
             var cmd = msg.split(">");

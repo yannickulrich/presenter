@@ -15,8 +15,8 @@
         <script type="text/javascript" src="lib/doubletab.js"></script>
         <script type="text/javascript" src="lib/swipe.js"></script>
         
-        <script type="text/javascript" src="ipad.js"></script>
-        <link rel="stylesheet" href="ipad.css" type="text/css"/>
+        <script type="text/javascript" src="ipad/ipad.js"></script>
+        <link rel="stylesheet" href="ipad/ipad.css" type="text/css"/>
 
         <script type="text/x-mathjax-config">
           MathJax.Hub.Config({
