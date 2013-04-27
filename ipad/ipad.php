@@ -8,6 +8,7 @@
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta id="viewport" name="viewport" content="initial-scale=1.0, user-scalable=no">
         
+        
         <script type="text/javascript" src="lib/jquery-min.js"></script>
         <script type="text/javascript" src="lib/raphael.min.js"></script>
         <script type="text/javascript" src="lib/json2.js"></script>

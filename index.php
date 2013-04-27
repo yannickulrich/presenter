@@ -30,6 +30,8 @@
             require("viewer/viewer.php");
         exit;
     }
+    
+    $url = $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
 ?>
 <!DOCTYPE html>
 <html>
@@ -38,10 +40,14 @@
             if (((bool) strpos($_SERVER['HTTP_USER_AGENT'],'iPad')) || isset($_GET["ipad"])) echo "";
             else echo " - Master"; ?></title>
         <meta name="apple-mobile-web-app-capable" content="yes" />
-        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="touch-icon.png" />
+        
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://<?php echo $url; ?>touch-icon.png" />
+        
+        <link rel="shortcut icon" href="http://<?php echo $url; ?>touch-icon.ico">
+        
         <meta id="viewport" name="viewport" content="initial-scale=1.0, user-scalable=no">
         <link rel="stylesheet" href="index.css" type="text/css"/>
-        <script type="text/javascript" src="jquery-min.js"></script>
+        <script type="text/javascript" src="lib/jquery-min.js"></script>
         <script type="text/javascript">$(function(){$(document).bind('touchmove', false);})</script>
     </head>
     <body>
