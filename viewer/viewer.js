@@ -69,6 +69,11 @@ var App = {
         };
         this.pageObj.render(renderContext);
     },
+    download : function()
+    {
+        canvg('canvasForOutput', $("#drawing").html());
+        //document.getElementById("canvasForOutput").toDataURL("image/png");
+    },
     pdfObj: 0,
     pageNumber: 1,
     pageObj: 0,

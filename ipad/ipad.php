@@ -8,6 +8,8 @@
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta id="viewport" name="viewport" content="initial-scale=1.0, user-scalable=no">
         
+        <script type="text/javascript" src="lib/rgbcolor.js"></script> 
+        <script type="text/javascript" src="lib/canvg.js"></script> 
         
         <script type="text/javascript" src="lib/jquery-min.js"></script>
         <script type="text/javascript" src="lib/raphael.min.js"></script>
@@ -38,5 +40,6 @@
                 <tr><td id="notes" colspan="5"><div class="inner">$${}$$</div></td></tr>
             </table>
         </div>
+        <canvas style="display:none;" id="canvasForOutput" width="1000px" height="600px"></canvas> 
     </body>
 </html>
