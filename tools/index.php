@@ -1,10 +1,11 @@
 <?php   
     session_start();
     include("config.php");
-    
-    if (!$_SERVER['SERVER_ADDR'] == $_SERVER['REMOTE_ADDR'])
+    //print_r($_SERVER);
+    if (!($_SERVER['SERVER_ADDR'] == $_SERVER['REMOTE_ADDR']))
     {
-        $this->output->set_status_header(400, 'No Remote Access Allowed');
+        header('HTTP/1.1 403 Forbidden');
+        echo "403: This file is <b>not</b> public. You can't access it!";
         exit; //just for good measure
     }
 
