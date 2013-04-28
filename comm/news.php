@@ -6,7 +6,7 @@
     else if (isset($_GET['write']) && isset($_REQUEST['data']) && isset($_REQUEST['mode']))
     {
         session_start();
-        include("../tools/auth.php");
+        include("../tools/config.php");
         if ($_SESSION['passwd'] == $authhash)
         {
             $indices = explode(">", file_get_contents('news.txt'), 2);

@@ -1,9 +1,9 @@
 <?php
     session_start();
-    $_SESSION['pdf'] = "slides.pdf";
-    $_SESSION['notes'] = "notes.txt";
+    //$_SESSION['pdf'] = "slides.pdf";
+    //$_SESSION['notes'] = "notes.txt";
     
-    
+    include("tools/config.php");
     
     // The master doesn't need any auth.    
     if (!((bool) strpos($_SERVER['HTTP_USER_AGENT'],'iPad')) && !isset($_GET["ipad"]))
@@ -13,7 +13,7 @@
     }
     
     
-    include("tools/auth.php");
+    
     if (isset($_GET['submit']) && isset($_POST['passwd']))
     {
         
