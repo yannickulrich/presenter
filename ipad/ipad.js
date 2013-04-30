@@ -4,17 +4,26 @@
 
 var App = {
     DRAWING_MODES: { "erase": 0, "draw": 1, "none": 2 },
-    syncPage: function () {
+    
+    
+    /*syncPage: function () {
         $.post("comm/news.php?write", { data: App.pageNumber, mode: 1 });
     },
     syncDrawing: function () {
         $.post("comm/news.php?write", { data: App.sketchpad.json(), mode: 2 });
+    },*/
+    sync : function() {
+        $.post("comm/news.php?write", { image: App.sketchpad.json(), pageNumber: App.pageNumber }, function(data){});
     },
+    
+    
     showNotes: function () {
         if (this.notesArray[this.pageNumber] != undefined)
             MathJax.Hub.queue.Push(["Text", MathJax.Hub.getAllJax()[0],"\\displaystyle{\\text{" + this.notesArray[this.pageNumber] + "}}"]);
         //$("#notes .inner").html(this.notesArray[this.pageNumber]);
     },
+    
+    
     updateDesign: function () {
         var totalw = window.innerWidth;
         var totalh = window.innerHeight;
@@ -49,8 +58,8 @@ var App = {
         });
         this.selectTool(this.DRAWING_MODES.none);
 
-        this.sketchpad.change(this.syncDrawing);
-        this.syncPage();
+        this.sketchpad.change(this.sync);
+        this.sync();
         window.setTimeout("App.showNotes()", 1000);
         $(window).resize(this.updateDesign);
         this.updateDesign();
@@ -82,7 +91,7 @@ var App = {
             this.sketchpad.clear();
 
         $("#drawing").css("background-image", "url('" + this.imageArray[this.pageNumber] + "')");
-        this.syncPage();
+        this.sync();
         this.showNotes();
     },
     selectTool: function (mode) {
