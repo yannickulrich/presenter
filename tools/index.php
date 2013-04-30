@@ -31,7 +31,24 @@
         if (PHP_OS == "Darwin")//Mac OS X
         {
             exec( "convert -density 150 -quality 100 -resize 800x " . realpath("../content/" . $_SESSION['pdf']) . " " . realpath("../content/pdfImages/") . "/slides.png" );
+            
+            
        }
+       
+       if ($handle = opendir('../content/pdfImages/')) //We need to know how many pages we are dealing with!!
+       {
+            $i = 0;
+            while (false !== ($file = readdir($handle)))
+                if ($file != "." && $file != "..") $i++;
+            closedir($handle);
+            
+            $str = "0";
+            
+            for ($j = 0; $j < $i; $j++) $str .= "\n>[]";
+            
+            file_put_contents("../comm/news.txt", $str);
+       }
+       
        exit;
     }
 

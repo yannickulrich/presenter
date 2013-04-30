@@ -6,15 +6,16 @@ var App = {
     DRAWING_MODES: { "erase": 0, "draw": 1, "none": 2 },
     
     
-    /*syncPage: function () {
-        $.post("comm/news.php?write", { data: App.pageNumber, mode: 1 });
+    syncPage: function () {
+        $.post("comm/news.php?write", { data: App.pageNumber, mode: 1 }, function(data){});
     },
     syncDrawing: function () {
-        $.post("comm/news.php?write", { data: App.sketchpad.json(), mode: 2 });
-    },*/
-    sync : function() {
-        $.post("comm/news.php?write", { image: App.sketchpad.json(), pageNumber: App.pageNumber }, function(data){});
+        $.post("comm/news.php?write", { data: App.sketchpad.json(), mode: 2 }, function(data){});
     },
+    /*
+    sync : function() {
+        $.post("comm/news.php?write", { image: App.sketchpad.json(), pageNumber: App.pageNumber }, function(data){alert(data);});
+    },*/
     
     
     showNotes: function () {
@@ -58,8 +59,8 @@ var App = {
         });
         this.selectTool(this.DRAWING_MODES.none);
 
-        this.sketchpad.change(this.sync);
-        this.sync();
+        this.sketchpad.change(this.syncDrawing);
+        this.syncDrawing();
         window.setTimeout("App.showNotes()", 1000);
         $(window).resize(this.updateDesign);
         this.updateDesign();
@@ -91,7 +92,7 @@ var App = {
             this.sketchpad.clear();
 
         $("#drawing").css("background-image", "url('" + this.imageArray[this.pageNumber] + "')");
-        this.sync();
+        this.syncPage();// Syncing will be done by the sketchpad's change function
         this.showNotes();
     },
     selectTool: function (mode) {
