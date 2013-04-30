@@ -7,7 +7,6 @@
         <title>Master</title>
         <script type="text/javascript" src="lib/jquery-min.js"></script>
         <script type="text/javascript" src="lib/raphael.min.js"></script>
-        <script type="text/javascript" src="lib/json2.js"></script>
         <script type="text/javascript" src="lib/raphael.sketchpad.js"></script>
 
         
