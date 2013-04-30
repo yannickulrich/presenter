@@ -1,10 +1,10 @@
 # LaTeX API for the presenter
 
 ## Main file
-Absolutely mandatory is: `\include{header}` at the begin and `\include{footer}` at the end.
+1. Copy the 'presenter.tex' file in your LaTeX directory
+2. Use '\include{presenter}'
+3. Right after the begin-document command, use '\presenterBegin'
+4. Before the end-document command, use '\presenterEnd'
 
 ## Functions
 * `\mframe{TITLE}{SUBTITLE}{CONTENT}{NOTES}`
-* `\image{WIDTH}{IMAGE SOURCE}{CAPTION}`: Include image with caption
-* `\nimage{WIDTH}{IMAGE SOURCE}`: Include image without caption
-* `\div`, `\rot`, `\grad`: Divergence, Rotation and Gradient

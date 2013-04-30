@@ -1,12 +1,12 @@
->This is the displayed note for the first slide
->This is the displayed note for the first slide
->This is the displayed note for 2nd slide
->This is the displayed note for 2nd slide
->This is the displayed note for 2nd slide
->This is the displayed note for 2nd slide
->This is the displayed note for 2nd slide
->This is the displayed note for next slide
->This is the displayed note for next slide
->This is the displayed note for next slide
->This is the displayed note for next slide
->This is the displayed note for next slide
+> This is the displayed note for the first slide
+> This is the displayed note for the first slide
+> This are the displayed note for 2nd slide
+> This are the displayed note for 2nd slide
+> This are the displayed note for 2nd slide
+> This are the displayed note for 2nd slide
+> This are the displayed note for 2nd slide
+> This is the displayed note for next slide
+> This is the displayed note for next slide
+> This is the displayed note for next slide
+> This is the displayed note for next slide
+> This is the displayed note for next slide

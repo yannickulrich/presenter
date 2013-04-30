@@ -1,0 +1,14 @@
+\newcounter{decrement}
+\usepackage{ifthen}
+\newcommand{\forloop}[5][1]
+{
+\setcounter{#2}{#3}
+\ifthenelse{#4}{#5 \addtocounter{#2}{#1}\forloop[#1]{#2}{\value{#2}}{#4}{#5}}{}
+}
+\newcommand{\mframe}[4]
+{\begin{frame}{#1}{#2}#3\end{frame}
+\forloop[-1]{decrement}{\value{beamerpauses}}{\value{decrement} > 0}
+{\immediate\write\outputstream{> #4}}}
+\newcommand{\presenterBegin}[0]{\newwrite\outputstream
+\immediate\openout\outputstream=notes.txt}
+\newcommand{\presenterEnd}[0]{\immediate\closeout\outputstream}
