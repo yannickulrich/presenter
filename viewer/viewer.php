@@ -42,6 +42,7 @@
         <a href="javascript:App.download()">Download this slide</a>
         <div id="drawing"></div>
         <canvas id="slide" style="border:1px solid black;"></canvas>
+        
         <canvas style="display:none;" id="canvasForOutput" width="1000px" height="600px"></canvas> 
     </body>
 </html>

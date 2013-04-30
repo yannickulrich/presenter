@@ -71,8 +71,25 @@ var App = {
     },
     download : function()
     {
-        canvg('canvasForOutput', $("#drawing").html());
-        //document.getElementById("canvasForOutput").toDataURL("image/png");
+        self = this;
+        $.ajax({
+            url: "comm/get.php?slideimages",
+            cache: false
+        }).done(function (data) {
+            imageArray = data.split("\n");
+            if (imageArray[imageArray.length - 1] == "")
+                imageArray.pop();
+            
+            var svg = $("#drawing").html().split(">");
+            svg.shift();
+            svg = svg.join(">");
+        
+            var svg = '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"> <image x="0" y="0" width="800" height="600" xlink:href="' + imageArray[self.pageNumber] + '" />' + svg;
+            canvg('canvasForOutput', svg);
+            
+            window.setTimeout('window.location.href=document.getElementById("canvasForOutput").toDataURL("image/png");', 100);
+        });
+        
     },
     pdfObj: 0,
     pageNumber: 1,
