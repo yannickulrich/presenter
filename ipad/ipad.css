@@ -50,3 +50,9 @@ table, td, tr, tbody {
     margin: 10px 10px;
     color: #fff;
 }
+#MathJax_Message {
+    display: none;
+    position: absolute;
+    left: -1000px;
+    top: -1000px;
+}
