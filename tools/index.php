@@ -76,15 +76,67 @@
     else if (isset($_GET['submit_saveAnnotations']))
     {
         if (PHP_OS == "Darwin")
-            $apps = "/Applications/Inkscape.app/Contents/Resources/bin/inkscape /usr/texbin/pdflatex";
-        else
-            $apps = "inkscape pdflatex";
+        {
+            /*$apps = "/Applications/Inkscape.app/Contents/Resources/bin/inkscape /usr/texbin/pdflatex";
+            exec("python " .dirname($_SERVER['SCRIPT_FILENAME']) . "/saveAnnotations.py ". realpath("../content/" . $_SESSION['pdf']) . " " . realpath("../comm/news.txt") . " " . $apps);*/
+            
+            $texFile = "\\documentclass[10pt]{article}\n" . 
+                       "\\usepackage[a4paper]{geometry}\n" . 
+                       "\\usepackage[final]{pdfpages}\n" . 
+                       "\\usepackage{graphicx}\n".
+                       "\\begin{document}\n".
+                       "\\unitlength1cm\n";
+            $file = explode("\n>", file_get_contents('../comm/news.txt'));
+            array_shift($file);
+            array_shift($file);
+            
+            foreach ($file as $i => $JSONpath) 
+            {
+                $tempfile = '<svg height="600" version="1.1" width="800" xmlns="http://www.w3.org/2000/svg" style="overflow: hidden; position: relative; -webkit-user-select: text; ">';
+                $paths = json_decode($JSONpath, true);
+                
+                foreach ($paths as $path) 
+                    $tempfile .= '<path style="stroke-opacity: ' . $path['stroke-opacity'] . '; stroke-linecap: ' . $path['stroke-linecap'] . '; stroke-linejoin: ' . $path['stroke-linejoin'] . '; " fill="' . $path['fill'] . '" stroke="' . $path['stroke'] . '" d="' . $path['path'] . '" stroke-opacity="' . $path['stroke-opacity'] . '" stroke-width="' . $path['stroke-width'] . '" stroke-linecap="' . $path['stroke-linecap'] . '" stroke-linejoin="' . $path['stroke-linejoin'] . '" transform="matrix(1,0,0,1,0,0)"></path>';
+                    
+                $tempfile .= "</svg>";
+                
+                
+                file_put_contents("temp/file" . $i . ".svg", $tempfile);
+                
+                $inkscape = "/Applications/Inkscape.app/Contents/Resources/bin/inkscape";
+                
+                exec( $inkscape .  " " . dirname($_SERVER['SCRIPT_FILENAME']) . "/temp/file" . $i . ".svg -z -A " . dirname($_SERVER['SCRIPT_FILENAME']) . "/temp/file" .  $i . ".pdf" );
+                
+                
+                $texFile .= "\\begin{picture}(20,20)\n".
+                            "\\put(0,0){\\includegraphics[width=10cm,page=" . ($i+1) . "]{" . realpath("../content/" . $_SESSION['pdf'])  . "}}\n" . 
+                            "\\put(0,0){\\includegraphics[width=10cm]{" . dirname($_SERVER['SCRIPT_FILENAME']) . "/temp/file" . $i . ".pdf}}\n" . 
+                            "\\end{picture}\n";
+
+            }
+            
+            
+            
+        }
+        $texFile .= "\\end{document}";
         
-        exec("python " .dirname($_SERVER['SCRIPT_FILENAME']) . "/saveAnnotations.py ". realpath("../content/" . $_SESSION['pdf']) . " " . realpath("../comm/news.txt") . " " . $apps);
+        file_put_contents("temp/annotations.tex", $texFile);
+        
+        exec("/usr/texbin/pdflatex -interaction=batchmode -output-directory=" . dirname($_SERVER['SCRIPT_FILENAME']) . "/temp " . dirname($_SERVER['SCRIPT_FILENAME']) . "/temp/annotations.tex");
+        
+        
+        if ($handle = opendir('temp/'))
+        {
+            $i = 0;
+            while (false !== ($file = readdir($handle)))
+                if ($file != "." && $file != ".." && $file != "annotations.pdf")
+                {
+                    unlink("temp/".$file);
+                }
+        }
+        
         echo "Done <a href='temp/annotations.pdf'>Download</a>";
         exit();
-        //exec( dirname($_SERVER['SCRIPT_FILENAME']) . "/saveAnnotations.py " . realpath("../content/" . $_SESSION['pdf']) . " " . realpath("../comm/news.txt") . " " . $inkscape . " 2> " . dirname($_SERVER['SCRIPT_FILENAME']) . "/error.txt");
-        //echo("bash -c echo test > " . dirname($_SERVER['SCRIPT_FILENAME']) . "/error.txt");
     }
     
 
@@ -174,7 +226,7 @@
                     }
                 ?>
             
-            <p class="log">
+            <p id="log">
                 ABC
             </p>
         </div>
