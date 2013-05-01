@@ -45,14 +45,13 @@
         
         <link rel="stylesheet" href="viewer/viewer.css" type="text/css"/>
     </head>
-    <body style="margin:0;padding:0;">
+    <body >
         <div id="toolbar">
             <div class="toolbarButton" id="downloadBut"></div>
             <div class="toolbarButton" id="fullscreenBut"></div>
         </div>
         <div id="wrapperMain">
             <div id="drawing"></div>
-            <canvas id="slide" style="border:1px solid black;"></canvas>
             <div id="laserpointer" ></div>
         </div>
         <canvas style="display:none;" id="canvasForOutput" width="1000px" height="600px"></canvas> 
