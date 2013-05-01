@@ -57,6 +57,12 @@ var App = {
         this.sketchpad.paper().forEach(function(obj){
             obj.transform(tfm);
         });
+        
+        if (this.fullscreen)
+        {
+            if (!(document.webkitIsFullScreen || document.mozFullScreen))
+                this.rescale(false);
+        }
         	
     },
     download : function()
@@ -91,11 +97,13 @@ var App = {
         {
             var scaleWidth = (screen.width - 3) / 800;
             var scaleHeight = (screen.height - 3) / 600;
+            window.setTimeout('App.fullscreen = true;', 100);
         }
         else
         {
             var scaleWidth = (window.innerWidth - 3) / 800;
             var scaleHeight = (window.innerHeight - 3) / 600;
+            this.fullscreen = false;
         }
         
         
@@ -107,7 +115,8 @@ var App = {
     pageNumber: 1,
     scale: 1,
     sketchpad: null,
-    imageArray : 0
+    imageArray : 0,
+    fullscreen : false
 };
 
 

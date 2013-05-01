@@ -13,7 +13,7 @@
         <script type="text/javascript" src="lib/raphael.sketchpad.js"></script>
 
         
-        <script type="text/javascript" src="lib/PDFJS/core.js"></script>
+        <!--<script type="text/javascript" src="lib/PDFJS/core.js"></script>
         <script type="text/javascript" src="lib/PDFJS/util.js"></script>
         <script type="text/javascript" src="lib/PDFJS/api.js"></script>
         <script type="text/javascript" src="lib/PDFJS/canvas.js"></script>
@@ -33,7 +33,7 @@
         <script type="text/javascript" src="lib/PDFJS/stream.js"></script>
         <script type="text/javascript" src="lib/PDFJS/worker.js"></script>
         <script type="text/javascript" src="lib/PDFJS/jpx.js"></script>
-        <script type="text/javascript" src="lib/PDFJS/jbig2.js"></script>
+        <script type="text/javascript" src="lib/PDFJS/jbig2.js"></script>-->
         
         <script type="text/javascript" src="lib/rgbcolor.js"></script> 
         <script type="text/javascript" src="lib/canvg.js"></script> 
