@@ -1,0 +1,45 @@
+#laserpointer
+{
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: red;
+    border-radius: 50%;
+    
+    
+    background: -moz-radial-gradient(center, ellipse cover, rgba(255,255,255,1) 2%, rgba(255,255,255,1) 20%, rgba(255,255,255,0.98) 22%, rgba(255,0,0,0.74) 41%, rgba(255,0,0,0) 100%);
+background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(2%,rgba(255,255,255,1)), color-stop(20%,rgba(255,255,255,1)), color-stop(22%,rgba(255,255,255,0.98)), color-stop(41%,rgba(255,0,0,0.74)), color-stop(100%,rgba(255,0,0,0)));
+background: -webkit-radial-gradient(center, ellipse cover, rgba(255,255,255,1) 2%,rgba(255,255,255,1) 20%,rgba(255,255,255,0.98) 22%,rgba(255,0,0,0.74) 41%,rgba(255,0,0,0) 100%);
+background: -o-radial-gradient(center, ellipse cover, rgba(255,255,255,1) 2%,rgba(255,255,255,1) 20%,rgba(255,255,255,0.98) 22%,rgba(255,0,0,0.74) 41%,rgba(255,0,0,0) 100%);
+background: -ms-radial-gradient(center, ellipse cover, rgba(255,255,255,1) 2%,rgba(255,255,255,1) 20%,rgba(255,255,255,0.98) 22%,rgba(255,0,0,0.74) 41%,rgba(255,0,0,0) 100%);
+background: radial-gradient(ellipse at center, rgba(255,255,255,1) 2%,rgba(255,255,255,1) 20%,rgba(255,255,255,0.98) 22%,rgba(255,0,0,0.74) 41%,rgba(255,0,0,0) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ff0000',GradientType=1 );
+
+}
+
+
+#toolbar
+{
+    height: 30px;
+    background-color: gray;
+}
+
+.toolbarButton
+{
+    margin-top: 3px;
+    height: 25px;
+    width: 25px;
+    background-size: contain;
+    background-repeat:no-repeat;
+}
+
+#fullscreenBut
+{
+    background-image: url('fullscreen.png');
+    float: right;
+}
+#downloadBut
+{
+    background-image: url('download.png');
+    float: left;
+}

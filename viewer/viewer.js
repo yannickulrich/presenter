@@ -112,4 +112,15 @@ var App = {
 
 $(document).ready(function() {
 	App.init();
+	$("#downloadBut").click(App.download);
+	$("#fullscreenBut").click(function(){
+	   var elem = document.getElementById("wrapperMain");
+        if (elem.requestFullscreen) {
+            elem.requestFullscreen();
+        } else if (elem.mozRequestFullScreen) {
+            elem.mozRequestFullScreen();
+        } else if (elem.webkitRequestFullscreen) {
+            elem.webkitRequestFullscreen();
+        }
+	});
 });

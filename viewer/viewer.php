@@ -4,8 +4,11 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Master</title>
+        <title>Viewer</title>
         <script type="text/javascript" src="lib/jquery-min.js"></script>
+        
+        
+        
         <script type="text/javascript" src="lib/raphael.min.js"></script>
         <script type="text/javascript" src="lib/raphael.sketchpad.js"></script>
 
@@ -34,36 +37,24 @@
         
         <script type="text/javascript" src="lib/rgbcolor.js"></script> 
         <script type="text/javascript" src="lib/canvg.js"></script> 
-
-        <script type="text/javascript" src="viewer/viewer.js"></script>
+        <script type="text/javascript" src="lib/canvg.js"></script> 
         
-        <style type="text/css">
-            #laserpointer
-{
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    background-color: red;
-    border-radius: 50%;
-    
-    
-    background: -moz-radial-gradient(center, ellipse cover, rgba(255,255,255,1) 2%, rgba(255,255,255,1) 20%, rgba(255,255,255,0.98) 22%, rgba(255,0,0,0.74) 41%, rgba(255,0,0,0) 100%);
-background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(2%,rgba(255,255,255,1)), color-stop(20%,rgba(255,255,255,1)), color-stop(22%,rgba(255,255,255,0.98)), color-stop(41%,rgba(255,0,0,0.74)), color-stop(100%,rgba(255,0,0,0)));
-background: -webkit-radial-gradient(center, ellipse cover, rgba(255,255,255,1) 2%,rgba(255,255,255,1) 20%,rgba(255,255,255,0.98) 22%,rgba(255,0,0,0.74) 41%,rgba(255,0,0,0) 100%);
-background: -o-radial-gradient(center, ellipse cover, rgba(255,255,255,1) 2%,rgba(255,255,255,1) 20%,rgba(255,255,255,0.98) 22%,rgba(255,0,0,0.74) 41%,rgba(255,0,0,0) 100%);
-background: -ms-radial-gradient(center, ellipse cover, rgba(255,255,255,1) 2%,rgba(255,255,255,1) 20%,rgba(255,255,255,0.98) 22%,rgba(255,0,0,0.74) 41%,rgba(255,0,0,0) 100%);
-background: radial-gradient(ellipse at center, rgba(255,255,255,1) 2%,rgba(255,255,255,1) 20%,rgba(255,255,255,0.98) 22%,rgba(255,0,0,0.74) 41%,rgba(255,0,0,0) 100%);
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ff0000',GradientType=1 );
-
-}
-        </style>
+        
+        
+        <script type="text/javascript" src="viewer/viewer.js"></script> 
+        
+        <link rel="stylesheet" href="viewer/viewer.css" type="text/css"/>
     </head>
     <body style="margin:0;padding:0;">
-        <a href="javascript:App.download()">Download this slide</a>
-        <div id="drawing"></div>
-        <canvas id="slide" style="border:1px solid black;"></canvas>
-        <div id="laserpointer" ></div>
-        
+        <div id="toolbar">
+            <div class="toolbarButton" id="downloadBut"></div>
+            <div class="toolbarButton" id="fullscreenBut"></div>
+        </div>
+        <div id="wrapperMain">
+            <div id="drawing"></div>
+            <canvas id="slide" style="border:1px solid black;"></canvas>
+            <div id="laserpointer" ></div>
+        </div>
         <canvas style="display:none;" id="canvasForOutput" width="1000px" height="600px"></canvas> 
         
     </body>
