@@ -97,12 +97,13 @@
         <meta id="viewport" name="viewport" content="initial-scale=1.0, user-scalable=no">
         
         <script type="text/javascript" src="../lib/jquery-min.js"></script>
-        <link rel="stylesheet" href="../index.css" type="text/css"/>
+        <link rel="stylesheet" href="index.css" type="text/css"/>
     </head>
     <body>
         <div id="wrapperMain">
-            <h1>PRESENTER</h1><br/>
-            <p>
+            <h1>PRESENTER</h1>
+            <h2>TOOLs</h2>
+            <div class="tool" id="passwdTool">
                 <form id="passwdForm" action="?submit_password" method="post">
                     Enter a password: <input name="passwd" id="passwd" type="password" size="12" maxlength="12"/>
                     <input type="submit" value="Save" />
@@ -113,14 +114,50 @@
                         return false;
                     });
                 </script>
-            </p>
-            <p>
+            </div>
+            <div class="tool">
                 <form action="?submit_upload" method="post" enctype="multipart/form-data">
-                    PDF: <input name="PDFfile" type="file" /><br />
-                    Notes: <input name="NotesFile" type="file" /><br />
-                    <input type="submit" value="Upload & Convert document " />
+                    <table>
+                        <tr>
+                            <td>PDF: </td><td><input name="PDFfile" type="file" /></td>
+                        </tr>
+                        <tr>
+                            <td>Notes: </td><td><input name="NotesFile" type="file" /></td>
+                        </tr>
+                            <td colspan="2"><input type="submit" value="Upload & Convert document " /></td>
+                    </table>
                 </form>
-                <?php
+            </div>
+            <div class="tool">
+                <form id="clearAnnotations" action="?submit_clear" method="post">
+                    <input type="submit" value="Clear all annotations" />
+                    
+                </form>
+                <script>
+                    $("#clearAnnotations").submit(function() {
+                        $.post("?submit_clear", {}, function(data){ if (data == "200") $("#log").html("Annotations cleared"); else $("#log").html("An error occured during clearing");} );
+                        return false;
+                    });
+                </script>
+            </div>
+            <div class="tool">
+                <form id="submit_saveAnnotations" action="?submit_saveAnnotations" method="post">
+                    Requires Inkscape & pdflatex installed<br>
+                    <input type="submit" value="Add annotations to slides" />
+                    
+                </form>
+                <script>
+                    $("#submit_saveAnnotations").submit(function() {
+                        $("#log").html("Saving! Please wait.");
+                        $.post("?submit_saveAnnotations", {}, function(data){ $("#log").html(data);});
+                        return false;
+                    });
+                </script>
+                
+            </div>
+            
+            
+            <?php
                     if (isset($_GET['submit_upload']))
                     {
                         ?>
@@ -136,36 +173,9 @@
                         <?php
                     }
                 ?>
-            </p>
-            <p>
-                <form id="clearAnnotations" action="?submit_clear" method="post">
-                    <input type="submit" value="Clear all annotations" />
-                    
-                </form>
-                <script>
-                    $("#clearAnnotations").submit(function() {
-                        $.post("?submit_clear", {}, function(data){ if (data == "200") $("#log").html("Annotations cleared"); else $("#log").html("An error occured during clearing");} );
-                        return false;
-                    });
-                </script>
-            </p>
-            <p>
-                <form id="submit_saveAnnotations" action="?submit_saveAnnotations" method="post">
-                    Requires Inkscape & pdflatex installed
-                    <input type="submit" value="Add annotations to slides" />
-                    
-                </form>
-                <script>
-                    $("#submit_saveAnnotations").submit(function() {
-                        $("#log").html("Saving! Please wait.");
-                        $.post("?submit_saveAnnotations", {}, function(data){ $("#log").html(data);});
-                        return false;
-                    });
-                </script>
-                
-            </p>
-            <p id="log">
-                
+            
+            <p class="log">
+                ABC
             </p>
         </div>
     </body>

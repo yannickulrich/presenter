@@ -92,7 +92,7 @@ var App = {
                 self.selectTool(self.DRAWING_MODES.none);
         });
         
-        this.setPalmRest(100);
+        this.setPalmRest(0);
         
     },
     swipe: function (dir, swiping) {
