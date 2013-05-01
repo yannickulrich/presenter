@@ -16,6 +16,8 @@ table, td, tr, tbody {
     width: 100%;
     margin:  10px auto 0 auto;
 }
+
+
 #mainTable {
     width: 100%;
 }
@@ -33,10 +35,13 @@ table, td, tr, tbody {
 #rightArea #pen, #rightArea #startLaserPointer {
     border-bottom: 1px solid #ddd;
 }
+
+
 #rightArea #pen, #rightArea #erase, #rightArea #startLaserPointer {
     background: #888;
     width: 80px;
     height: 79px;
+    background-size:contain;
 }
 #rightArea #nextSlide {
     width: 80px;
@@ -45,7 +50,37 @@ table, td, tr, tbody {
 }
 #rightArea #pen.active, #rightArea #erase.active, #rightArea #startLaserPointer.active {
     background: #ccc;
+    background-size:contain;
 }
+
+
+#rightArea #pen
+{
+    background-image: url(pencil.png);
+}
+#rightArea #pen.active
+{
+    background-image: url(pencil.png);
+}
+
+#rightArea #erase
+{
+    background-image: url(eraser.png);
+}
+#rightArea #erase.active
+{
+    background-image: url(eraser.png);
+}
+
+#rightArea #startLaserPointer
+{
+    background-image: url(pointer.png);
+}
+#rightArea #startLaserPointer.active
+{
+    background-image: url(pointer.png);
+}
+
 #notes .inner {
     margin: 10px 10px;
     color: #fff;
