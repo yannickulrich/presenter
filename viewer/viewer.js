@@ -51,6 +51,16 @@ var App = {
             var cmd = msg.split(">");
             self.sketchpad.json(cmd[1]);
             self.pageNumber = parseInt(cmd[0]);
+            
+            var offset = $("#slide").offset();     
+            
+        
+            var l = parseFloat(cmd[2].split(",")[0])*$("#slide").width() +offset['left'];
+            var t = parseFloat(cmd[2].split(",")[1])*$("#slide").height()+offset['top' ];
+            
+            //$("#laserpointer").offfset( {"left" : , "top" :   } );
+            $("#laserpointer").offset( {"top": t, "left":l });
+            
             self.pageObj = self.listOfPageObj[self.pageNumber];
             self.display();
         });

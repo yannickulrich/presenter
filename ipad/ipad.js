@@ -12,6 +12,9 @@ var App = {
     syncDrawing: function () {
         $.post("comm/news.php?write", { data: App.sketchpad.json(), mode: 2 }, function(data){});
     },
+    syncLaserpointer : function() {
+        $.post("comm/news.php?write", { data: App.laserpointer.join(","), mode: 3 }, function(data){});
+    },
     /*
     sync : function() {
         $.post("comm/news.php?write", { image: App.sketchpad.json(), pageNumber: App.pageNumber }, function(data){alert(data);});
@@ -111,6 +114,15 @@ var App = {
 
         $("#drawing").css("background-image", "url('" + this.imageArray[this.pageNumber] + "')");
     },
+    click : function(e)
+    {
+        if (App.currentDrawingMode == App.DRAWING_MODES.none) //Laserpointer
+        {
+            $("#laserpointer").offset({"top":e.clientY, "left": e.clientX});
+            App.laserpointer = [(e.clientX-$("#drawing").offset()['left'])/$("#drawing").width(), (e.clientY-$("#drawing").offset()['top'])/$("#drawing").height()  ];
+            App.syncLaserpointer();
+        }
+    },
     pageNumber: 0,
     scale: 1,
     scaleAnnotation: 1,
@@ -118,7 +130,8 @@ var App = {
     imageArray: new Array(),
     sketchpad: null,
     annotationArray: [],
-    currentDrawingMode: 0
+    currentDrawingMode: 0,
+    laserpointer : [0,0]
 };
 
 
@@ -131,5 +144,6 @@ $(document).ready(function () {
         min_move_x: 20,
         min_move_y: 20,
         preventDefaultEvents: true
-    })
+    }).click(App.click);
+    
 });

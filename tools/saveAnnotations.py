@@ -6,7 +6,8 @@ inkscape = "inkscape"
 
 f = open('../comm/news.txt', 'r')
 arr = f.read().split("\n>")
-arr.pop(0)
+arr.pop(0) #Current page
+arr.pop(0) #Laser pointer
 f.close()
 
 texFile = open('annotations.tex', "w")

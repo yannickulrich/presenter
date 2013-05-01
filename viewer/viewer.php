@@ -41,7 +41,9 @@
         <a href="javascript:App.download()">Download this slide</a>
         <div id="drawing"></div>
         <canvas id="slide" style="border:1px solid black;"></canvas>
+        <div id="laserpointer" style="position: absolute;    width: 10px;    height: 10px;    background-color: red; border-radius: 50%;"></div>
         
         <canvas style="display:none;" id="canvasForOutput" width="1000px" height="600px"></canvas> 
+        
     </body>
 </html>

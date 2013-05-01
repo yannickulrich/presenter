@@ -37,12 +37,14 @@
     </head>
     <body>
         <div id="wrapperMain">
+            
             <table id="mainTable">
                 <tr>
                     <td id="prevSlide"></td><td class="spaceH"></td><td id="slide"><div id="drawing"></div></td><td class="spaceH"></td><td id="rightArea"><table><tr><td id="nextSlide" colspan="2"></td></tr><tr><td id="pen"></td></tr><tr><td id="erase"></td></tr></table></td>
                 </tr>
                 <tr><td id="notes" colspan="5"><div class="inner">$${}$$</div></td></tr>
             </table>
+            <div id="laserpointer"></div>
         </div>
         <canvas style="display:none;" id="canvasForOutput" width="1000px" height="600px"></canvas> 
     </body>

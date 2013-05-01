@@ -56,3 +56,12 @@ table, td, tr, tbody {
     left: -1000px;
     top: -1000px;
 }
+
+#laserpointer
+{
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: red;
+    border-radius: 50%;
+}

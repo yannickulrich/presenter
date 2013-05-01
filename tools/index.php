@@ -42,7 +42,7 @@
                 if ($file != "." && $file != "..") $i++;
             closedir($handle);
             
-            $str = "0";
+            $str = "0\n>(0,0)";
             
             for ($j = 0; $j < $i; $j++) $str .= "\n>[]";
             
