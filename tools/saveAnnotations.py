@@ -4,7 +4,7 @@ import os
 
 inkscape = "inkscape"
 
-f = open('../comm/annotations.txt', 'r')
+f = open('../comm/news.txt', 'r')
 arr = f.read().split("\n>")
 arr.pop(0)
 f.close()

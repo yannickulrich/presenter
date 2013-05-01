@@ -1,5 +1,5 @@
-Hallo, ich werde jetzt eine Praesentation ueber die Maxwell'schen Gleichung halten
-> Ok, das ist mein Inhalt $a^2+b^2=c^2$
+Pythagoras: $a^2+b^2=c^2$ Ist dieser satz. Eine folge: $\sin^2\phi; + \cos^2\phi = 1$ ist das
+> AHBC
 > A
 > B
 > A

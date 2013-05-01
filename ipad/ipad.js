@@ -20,7 +20,12 @@ var App = {
     
     showNotes: function () {
         if (this.notesArray[this.pageNumber] != undefined)
-            MathJax.Hub.queue.Push(["Text", MathJax.Hub.getAllJax()[0],"\\displaystyle{\\text{" + this.notesArray[this.pageNumber] + "}}"]);
+        {
+            //MathJax.Hub.queue.Push(["Text", MathJax.Hub.getAllJax()[0],"\\displaystyle{\\text{" + this.notesArray[this.pageNumber] + "}}"]);
+            $("#notes .inner").html(this.notesArray[this.pageNumber]);
+            M.parseMath($("#notes .inner")[0]);
+            
+        }
         //$("#notes .inner").html(this.notesArray[this.pageNumber]);
     },
     
