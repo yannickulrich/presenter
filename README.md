@@ -4,13 +4,11 @@ Presenter is a tool for presentations. While the slides are shown on the beamer,
 
 ## Requirements 
 You must have the following programms installed:
- * [Inkscape](http://inkscape.org)
   * On Mac OS X: `/Applications/Inkscape.app/`
  * An image converting tool
   * On Mac OS X: `convert` (preinstalled)
- * [Python 2+](http://python.org)
-  * On Mac OS X: `python` (preinstalled)
- * [pdfLaTeX](http://en.wikipedia.org/wiki/PdfTeX) (Only for creating & downloading)
+ * [pdfLaTeX](http://en.wikipedia.org/wiki/PdfTeX) (Only for creating & downloading, Mac OS X only)
+ * [Inkscape](http://inkscape.org) (Only for creating & downloading, Mac OS X only)
   * On Mac OS X: `/usr/texbin/` 
  * A PHP-Webserver
   * For example [XAMPP](http://www.apachefriends.org/en/xampp.html) (Mac OS X, Linux, Windows)
