@@ -67,6 +67,52 @@
                 </tr>
                 <tr><td id="notes" colspan="5"><div class="inner">$${}$$</div></td></tr>
             </table>
+            <div id="strokePalette">
+                <table>
+                    <tr>
+                        <td class="strokeTD"> <div class="strokeColor" style="background-color: black"></div> </td>
+                        <td class="strokeTDEmpty"></td>
+                        <td class="strokeTD"> <div class="strokeColor" style="background-color: red"></div></td>
+                        <td class="strokeTDEmpty"></td>
+                        <td class="strokeTD"> <div class="strokeColor" style="background-color: blue"></div> </td>
+                        <td class="strokeTDEmpty"></td>
+                        <td class="strokeTD"> <div class="strokeColor" style="background-color: LawnGreen"></div></td>
+                    </tr>
+                    <tr><td class="strokeTDEmpty"></tr>
+                    <tr>
+                        <td class="strokeTD"> <div class="strokeColor" style="background-color: white"></div> </td>
+                        <td class="strokeTDEmpty"></td>
+                        <td class="strokeTD"> <div class="strokeColor" style="background-color: Orange"></div> </td>
+                        <td class="strokeTDEmpty"></td>
+                        <td class="strokeTD"> <div class="strokeColor" style="background-color: RoyalBlue"></div> </td>
+                        <td class="strokeTDEmpty"></td>
+                        <td class="strokeTD"> <div class="strokeColor" style="background-color: green"></div> </td>
+                    </tr>
+                    
+                    
+                    <tr><td class="strokeTDEmpty"></tr>
+                    <tr>
+                        <td class="strokeTD"> <div class="strokeSize" style="height:25px;width:25px;"></div> </td>
+                        <td class="strokeTDEmpty"></td>
+                        <td class="strokeTD"> <div class="strokeSize" style="height:20px;width:20px;"></div> </td>
+                        <td class="strokeTDEmpty"></td>
+                        <td class="strokeTD"> <div class="strokeSize" style="height:15px;width:15px;"></div> </td>
+                        <td class="strokeTDEmpty"></td>
+                        <td class="strokeTD"> <div class="strokeSize" style="height:10px;width:10px;"></div> </td>
+                    </tr>
+                    <tr><td class="strokeTDEmpty"></tr>
+                    <tr>
+                        <td class="strokeTD"> <div class="strokeSize" style="height:7px;width:7px;"></div> </td>
+                        <td class="strokeTDEmpty"></td>
+                        <td class="strokeTD"> <div class="strokeSize" style="height:5px;width:5px;"></div> </td>
+                        <td class="strokeTDEmpty"></td>
+                        <td class="strokeTD"> <div class="strokeSize" style="height:3px;width:3px;"></div> </td>
+                        <td class="strokeTDEmpty"></td>
+                        <td class="strokeTD"> <div class="strokeSize" style="height:1px;width:1px;"></div> </td>
+                    </tr>
+                    
+                </table>
+            </div>
             <div id="laserpointer"></div>
         </div>
         <canvas style="display:none;" id="canvasForOutput" width="1000px" height="600px"></canvas> 

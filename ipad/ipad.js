@@ -40,6 +40,10 @@ var App = {
         $(".spaceH").css("width", spaceH);
     },
     init: function () {
+        
+                    
+                    
+                    
         var self = this;
         $.ajax({
             url: "comm/get.php?notes",
@@ -78,10 +82,20 @@ var App = {
 
         $("#prevSlide").on("mouseup", function () { self.swipe(-1); });
         $("#nextSlide").on("mouseup", function () { self.swipe(1); });
-        $("#pen").on("mouseup", function () {
-            if (self.currentDrawingMode != self.DRAWING_MODES.draw) self.selectTool(self.DRAWING_MODES.draw);
-            else self.selectTool(self.DRAWING_MODES.none);
+        
+        $("#pen").on("mousedown", function(){
+            self.strokeWindowTimer = +new Date();
+        }).on("mouseup", function () {
+            if (self.currentDrawingMode != self.DRAWING_MODES.draw)
+            {
+                self.selectTool(self.DRAWING_MODES.draw);
+                $("#strokePalette").css("display", "block" );
+            }
+            else self.selectTool(self.DRAWING_MODES.none);            
         });
+        
+        
+        
         $("#erase").on("mouseup", function () {
             if (self.currentDrawingMode != self.DRAWING_MODES.erase) self.selectTool(self.DRAWING_MODES.erase);
             else self.selectTool(self.DRAWING_MODES.none);
@@ -94,6 +108,20 @@ var App = {
         
         this.setPalmRest(0);
         
+        $(".strokeColor").click(function(){
+            var rgb = $(this).css('background-color');
+            rgb = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+            function hex(x) {return ("0" + parseInt(x).toString(16)).slice(-2);}
+            App.sketchpad.pen().color( "#" + hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]) );
+        });
+        $(".strokeSize").click(function(){
+            App.sketchpad.pen().width( $(this).width() );
+        });
+        
+        
+        var pen = $("#pen").offset();
+        $("#strokePalette").offset({"top" : pen.top-25, 'left': pen.left-170 });
+        $("#strokePalette").css("display", "none");
     },
     swipe: function (dir, swiping) {
         if (swiping && this.currentDrawingMode != this.DRAWING_MODES.none) return;
@@ -147,12 +175,22 @@ var App = {
     setPalmRest : function(height)
     {
         if (typeof(height) == "object")
+        {
+            if ($("#strokePalette").css("display") == "block")
+            {
+                $("#strokePalette").css("display", "none");
+                return;
+            }
             height = $("#drawing").height()-height.clientY;
+        }
         
         $("#palmRest").height(height);
         
         $("#palmRest").offset( {top: $('#drawing').offset()['top']+( $('#drawing').height()-height ) , 'left': $('#drawing').offset()['left']} );
     },
+    
+    
+    
     
     pageNumber: 0,
     scale: 1,
@@ -162,7 +200,10 @@ var App = {
     sketchpad: null,
     annotationArray: [],
     currentDrawingMode: 0,
-    laserpointer : [0,0]
+    laserpointer : [0,0],
+    strokeWindowTimer : 0
+    
+    
 };
 
 
