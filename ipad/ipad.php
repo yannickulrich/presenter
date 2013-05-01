@@ -42,6 +42,7 @@
                 <tr>
                     <td id="prevSlide"></td>
                     <td class="spaceH"></td>
+                    
                     <td id="slide">
                         <div id="drawing"></div>
                         <div id="palmRest"></div>

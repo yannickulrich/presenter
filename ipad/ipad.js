@@ -146,6 +146,9 @@ var App = {
     },
     setPalmRest : function(height)
     {
+        if (typeof(height) == "object")
+            height = $("#drawing").height()-height.clientY;
+        
         $("#palmRest").height(height);
         
         $("#palmRest").offset( {top: $('#drawing').offset()['top']+( $('#drawing').height()-height ) , 'left': $('#drawing').offset()['left']} );
@@ -174,4 +177,5 @@ $(document).ready(function () {
         preventDefaultEvents: true
     }).click(App.click);
     
+    $(".spaceH").click(App.setPalmRest);
 });
