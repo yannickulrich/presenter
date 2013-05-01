@@ -40,7 +40,29 @@
             
             <table id="mainTable">
                 <tr>
-                    <td id="prevSlide"></td><td class="spaceH"></td><td id="slide"><div id="drawing"></div></td><td class="spaceH"></td><td id="rightArea"><table><tr><td id="nextSlide" colspan="2"></td></tr><tr><td id="pen"></td></tr><tr><td id="erase"></td></tr></table></td>
+                    <td id="prevSlide"></td>
+                    <td class="spaceH"></td>
+                    <td id="slide">
+                        <div id="drawing"></div>
+                        <div id="palmRest"></div>
+                    </td>
+                    <td class="spaceH"></td>
+                    <td id="rightArea">
+                        <table>
+                            <tr>
+                                <td id="nextSlide" colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td id="startLaserPointer"></td>
+                            </tr>
+                            <tr>
+                                <td id="pen"></td>
+                            </tr>
+                            <tr>
+                                <td id="erase"></td>
+                            </tr>
+                        </table>
+                    </td>
                 </tr>
                 <tr><td id="notes" colspan="5"><div class="inner">$${}$$</div></td></tr>
             </table>

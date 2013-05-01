@@ -30,20 +30,20 @@ table, td, tr, tbody {
     height: 600px;
     padding: 0;
 }
-#rightArea #pen {
+#rightArea #pen, #rightArea #startLaserPointer {
     border-bottom: 1px solid #ddd;
 }
-#rightArea #pen, #rightArea #erase {
+#rightArea #pen, #rightArea #erase, #rightArea #startLaserPointer {
     background: #888;
     width: 80px;
     height: 79px;
 }
 #rightArea #nextSlide {
     width: 80px;
-    height: 440px;
+    height: 360px;
     border-bottom: 1px solid #ddd;
 }
-#rightArea #pen.active, #rightArea #erase.active {
+#rightArea #pen.active, #rightArea #erase.active, #rightArea #startLaserPointer.active {
     background: #ccc;
 }
 #notes .inner {
@@ -64,4 +64,13 @@ table, td, tr, tbody {
     height: 10px;
     background-color: red;
     border-radius: 50%;
+}
+
+#palmRest
+{
+    background-color: gray;
+    opacity: 0.5;
+    position: absolute;
+    z-index: 10000;
+    width: 800px;
 }

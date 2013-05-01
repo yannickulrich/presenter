@@ -3,7 +3,7 @@
 //This looks cool: http://ianli.com/sketchpad/
 
 var App = {
-    DRAWING_MODES: { "erase": 0, "draw": 1, "none": 2 },
+    DRAWING_MODES: { "erase": 0, "draw": 1, "none": 2, "laserpointer" : 3 },
     
     
     syncPage: function () {
@@ -60,11 +60,14 @@ var App = {
             self.annotationArray = new Array(self.imageArray.length);
             $("#drawing").css("background-image", "url('" + self.imageArray[0] + "')");
         });
+        
         this.sketchpad = Raphael.sketchpad("drawing", {
             width: 800,
             height: 600,
             editing: true
         });
+        
+        
         this.selectTool(this.DRAWING_MODES.none);
 
         this.sketchpad.change(this.syncDrawing);
@@ -83,6 +86,14 @@ var App = {
             if (self.currentDrawingMode != self.DRAWING_MODES.erase) self.selectTool(self.DRAWING_MODES.erase);
             else self.selectTool(self.DRAWING_MODES.none);
         });
+        $("#startLaserPointer").on("mouseup", function () {
+            if (self.currentDrawingMode != self.DRAWING_MODES.laserpointer) self.selectTool(self.DRAWING_MODES.laserpointer);
+            else
+                self.selectTool(self.DRAWING_MODES.none);
+        });
+        
+        this.setPalmRest(100);
+        
     },
     swipe: function (dir, swiping) {
         if (swiping && this.currentDrawingMode != this.DRAWING_MODES.none) return;
@@ -98,6 +109,7 @@ var App = {
             this.sketchpad.json(this.annotationArray[this.pageNumber]); //Get drawings back
         else
             this.sketchpad.clear();
+            
 
         $("#drawing").css("background-image", "url('" + this.imageArray[this.pageNumber] + "')");
         this.syncPage();// Syncing will be done by the sketchpad's change function
@@ -106,23 +118,39 @@ var App = {
     selectTool: function (mode) {
         this.currentDrawingMode = mode;
         $(".active").removeClass("active");
+        this.setLaserpointer(1000,1000);
         switch (mode) {
             case this.DRAWING_MODES.erase: this.sketchpad.editing("erase"); $("#erase").addClass("active"); break;
             case this.DRAWING_MODES.draw: this.sketchpad.editing(true); $("#pen").addClass("active"); break;
-            case this.DRAWING_MODES.none: this.sketchpad.editing(false); break;
+            case this.DRAWING_MODES.laserpointer: $("#startLaserPointer").addClass("active");
+            case this.DRAWING_MODES.none: this.sketchpad.editing(false);   break;
         }
 
         $("#drawing").css("background-image", "url('" + this.imageArray[this.pageNumber] + "')");
     },
+    
+    setLaserpointer : function(x,y)
+    {
+        $("#laserpointer").offset({"top":y, "left": x});
+        this.laserpointer = [(x-$("#drawing").offset()['left'])/$("#drawing").width(), (y-$("#drawing").offset()['top'])/$("#drawing").height()  ];
+        App.syncLaserpointer();
+    },
+    
     click : function(e)
     {
-        if (App.currentDrawingMode == App.DRAWING_MODES.none) //Laserpointer
+        if (App.currentDrawingMode == App.DRAWING_MODES.laserpointer) //Laserpointer
         {
-            $("#laserpointer").offset({"top":e.clientY, "left": e.clientX});
-            App.laserpointer = [(e.clientX-$("#drawing").offset()['left'])/$("#drawing").width(), (e.clientY-$("#drawing").offset()['top'])/$("#drawing").height()  ];
-            App.syncLaserpointer();
+            App.setLaserpointer(e.clientX, e.clientY);
+            
         }
     },
+    setPalmRest : function(height)
+    {
+        $("#palmRest").height(height);
+        
+        $("#palmRest").offset( {top: $('#drawing').offset()['top']+( $('#drawing').height()-height ) , 'left': $('#drawing').offset()['left']} );
+    },
+    
     pageNumber: 0,
     scale: 1,
     scaleAnnotation: 1,
