@@ -1,1 +1,1 @@
-<?php $_SESSION['pdf'] = 'slides.pdf'; $_SESSION['notes'] = 'notes.txt'; $authhash = '098f6bcd4621d373cade4e832627b4f6';?>
+<?php $_SESSION['pdf'] = 'slides.pdf'; $_SESSION['notes'] = 'notes.txt'; $authhash = '098f6bcd4621d373cade4e832627b4f6'; ?>

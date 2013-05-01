@@ -1,16 +1,25 @@
 #!/usr/bin/python
 import json
 import os
+import sys
 
-inkscape = "inkscape"
 
-f = open('../comm/news.txt', 'r')
+
+inkscape = sys.argv[3]
+pdflatex = sys.argv[4]
+slides = sys.argv[1]
+
+f = open(sys.argv[2], 'r')
 arr = f.read().split("\n>")
+
+
+
 arr.pop(0) #Current page
 arr.pop(0) #Laser pointer
 f.close()
 
-texFile = open('annotations.tex', "w")
+texFile = open(os.path.dirname(os.path.realpath(__file__)) + "/temp/annotations.tex", "w")
+
 
 texFile.write("\\documentclass[10pt]{article}\n")
 texFile.write("\\usepackage[a4paper]{geometry}\n")
@@ -21,7 +30,7 @@ texFile.write("\\unitlength1cm\n")
 
 for i in range(len(arr)):
     paths = json.loads(arr[i])
-    f = open("file" + str(i) + ".svg", "w")
+    f = open(os.path.dirname(os.path.realpath(__file__)) + "/temp/file" + str(i) + ".svg", "w")
     f.write( '<svg height="600" version="1.1" width="800" xmlns="http://www.w3.org/2000/svg" style="overflow: hidden; position: relative; -webkit-user-select: text; ">' )
 
     for path in paths:
@@ -30,19 +39,20 @@ for i in range(len(arr)):
     f.write( "</svg>" )
     f.close()
     
-    os.system(inkscape +  " file" + str(i) + ".svg -z -A file" + str(i) + ".pdf ; rm file" + str(i) + ".svg")
+    os.system(inkscape +  " " + os.path.dirname(os.path.realpath(__file__)) + "/temp/file" + str(i) + ".svg -z -A " + os.path.dirname(os.path.realpath(__file__)) + "/temp/file" + str(i) + ".pdf ; rm " + os.path.dirname(os.path.realpath(__file__)) + "/temp/file" + str(i) + ".svg")
     
     texFile.write("\\begin{picture}(20,20)\n")
-    texFile.write("\\put(0,0){\\includegraphics[width=10cm,page=" + str(i+1) + "]{slides.pdf}}\n")
-    texFile.write("\\put(0,0){\\includegraphics[width=10cm]{file" + str(i) + ".pdf}}\n")
+    texFile.write("\\put(0,0){\\includegraphics[width=10cm,page=" + str(i+1) + "]{" + slides + "}}\n")
+    texFile.write("\\put(0,0){\\includegraphics[width=10cm]{" + os.path.dirname(os.path.realpath(__file__)) + "/temp/file" + str(i) + ".pdf}}\n")
     texFile.write("\\end{picture}\n")
 
 texFile.write("\\end{document}")
 texFile.close()
 
 
-os.system("pdflatex annotations.tex")
+os.system(pdflatex + " -interaction=batchmode -output-directory=" + os.path.dirname(os.path.realpath(__file__)) + "/temp " + os.path.dirname(os.path.realpath(__file__)) + "/temp/annotations.tex")
 
-for i in range(len(arr)):
-    os.system("rm file" + str(i) + ".pdf")
+
+#for i in range(len(arr)):
+#    os.system("rm " + os.path.dirname(os.path.realpath(__file__)) + "/temp/file" + str(i) + ".pdf")
     
