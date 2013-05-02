@@ -95,10 +95,13 @@ var App = {
 
         $(".strokeColor").click(function () {
             App.sketchpad.pen().color($(this).css('background-color'));
+            $("#strokePalette").hide();
         });
         $(".strokeSize").click(function () {
             App.sketchpad.pen().width($(this).width());
+            $("#strokePalette").hide();
         });
+        $("#strokePalette").click(function(){ $("#strokePalette").hide();});
     },
     initLaserpointer: function () {
         var self = this;
@@ -173,6 +176,7 @@ var App = {
     setPalmRest: function (height) {
         if (App.currentDrawingMode != App.DRAWING_MODES.draw)
             return;
+            
         if (typeof (height) == "object") {
             if ($("#strokePalette").css("display") == "block") {
                 $("#strokePalette").css("display", "none");
@@ -184,6 +188,7 @@ var App = {
         $("#palmRest").height(height);
 
         $("#palmRest").offset({ top: $('#drawing').offset()['top'] + ($('#drawing').height() - height), 'left': $('#drawing').offset()['left'] });
+        
     },
 
 
