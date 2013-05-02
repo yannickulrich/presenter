@@ -125,11 +125,9 @@ var App = {
     selectTool: function (mode) {
         this.currentDrawingMode = mode;
         $(".active").removeClass("active");
-<<<<<<< HEAD
+        
         this.setLaserpointer(-100,-100);
-=======
-        this.setLaserpointer(-1000, -1000);
->>>>>>> Updates-iPad-files
+        
         switch (mode) {
             case this.DRAWING_MODES.erase:
                 this.sketchpad.editing("erase");
@@ -160,16 +158,6 @@ var App = {
         this.laserpointer = [(x - $("#drawing").offset().left) / $("#drawing").width(), (y - $("#drawing").offset()['top']) / $("#drawing").height()];
         App.syncLaserpointer();
     },
-<<<<<<< HEAD
-    
-    
-    setPalmRest : function(height)
-    {
-        if (typeof(height) == "object")
-        {
-            if ($("#strokePalette").css("display") == "block")
-            {
-=======
 
     updateLaserpointer: function (e) {
         if (App.currentDrawingMode == App.DRAWING_MODES.laserpointer)
@@ -178,7 +166,6 @@ var App = {
     setPalmRest: function (height) {
         if (typeof (height) == "object") {
             if ($("#strokePalette").css("display") == "block") {
->>>>>>> Updates-iPad-files
                 $("#strokePalette").css("display", "none");
                 return;
             }
@@ -222,7 +209,6 @@ $(document).ready(function () {
     
     
     App.init();
-<<<<<<< HEAD
     $("#drawing").touchwipe({
         wipeLeft: function () { App.swipe(1, true); },
         wipeRight: function () { App.swipe(-1, true); },
@@ -271,6 +257,5 @@ $(document).ready(function () {
     });
     
     $(".spaceH").click(App.setPalmRest);
-=======
->>>>>>> Updates-iPad-files
+
 });
