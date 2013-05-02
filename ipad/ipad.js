@@ -46,8 +46,10 @@ var App = {
             
             if (self.imageArray[self.imageArray.length - 1] == "")
                 self.imageArray.pop();
-            for (var i = 0; i < self.imageArray.length; i++)
-                new Image().src = self.imageArray[i];
+            
+            self.getImage(0);
+            
+            
             
                 
             self.annotationArray = new Array(self.imageArray.length);
@@ -145,7 +147,9 @@ var App = {
         else this.sketchpad.clear();
 
 
-        $("#drawing").css("background-image", "url('" + this.imageArray[this.pageNumber] + "')");
+        //$("#drawing").css("background-image", "url('" + this.imageArray[this.pageNumber] + "')");
+        $("#drawing")[0].style.background="url(" + localStorage.getItem('image' + this.pageNumber) + ")";
+        
         this.syncPage();
         this.showNotes();
     },
@@ -215,6 +219,23 @@ var App = {
 
         $("#palmRest").offset({ top: $('#drawing').offset()['top'] + ($('#drawing').height() - height), 'left': $('#drawing').offset()['left'] });
         
+    },
+    
+    getImage : function(n)
+    {
+        self = this;
+        $.ajax({
+            cache: false,
+            type: "GET",
+            url: "comm/get.php?slideimageByURL&url=" + self.imageArray[n],
+        
+        }).done(function (data) {
+            if (n > 40)
+                return;
+            //$("#drawing")[0].style.background="url(data:image/png;base64," + data + ")";
+            localStorage.setItem("image" + n, "data:image/png;base64," + data);
+            App.getImage(n+1);
+        });
     },
 
 

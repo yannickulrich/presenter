@@ -21,4 +21,9 @@
     {
         echo file_get_contents( "../content/" . $_SESSION['notes']);
     }
+    
+    if (isset($_GET['slideimageByURL']))
+    {
+        echo base64_encode(file_get_contents("../" . $_GET['url']));
+    }
 ?>
