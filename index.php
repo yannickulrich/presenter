@@ -24,6 +24,7 @@
     }
     if (isset($_SESSION['passwd']) && $_SESSION['passwd'] == $authhash)
     {
+        
         if (((bool) strpos($_SERVER['HTTP_USER_AGENT'],'iPad')) || isset($_GET["ipad"]))
             require("ipad/ipad.php");
         else
@@ -54,6 +55,7 @@
         <div id="wrapperMain">
             <h1>PRESENTER</h1><br/>
             <form action="?submit<?php if (isset($_GET["ipad"])) echo "&ipad";?>" method="post">
+                <input type="checkbox" name="enableDrawing" value="yes"> Enable drawing?<br>
                 <input name="passwd" type="password" size="12" maxlength="12"/>
                 <input type="submit" value="Login" />
             </form> 
