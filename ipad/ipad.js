@@ -90,10 +90,11 @@ var App = {
         if (enableDrawing)
             self.initDrawFeatures();
         else
-        {//Hide buttons
+        {
             $("#pen").hide();
             $("#erase").hide();
             $("#startLaserPointer").hide();
+            $("#nextSlide").css("height", "600px");
         }
         self.initLaserpointer();
     },
