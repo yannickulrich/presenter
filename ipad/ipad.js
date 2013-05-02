@@ -168,7 +168,11 @@ var App = {
         if (App.currentDrawingMode == App.DRAWING_MODES.laserpointer)
             App.setLaserpointer(e.clientX, e.clientY);
     },
+    
+    
     setPalmRest: function (height) {
+        if (App.currentDrawingMode != App.DRAWING_MODES.draw)
+            return;
         if (typeof (height) == "object") {
             if ($("#strokePalette").css("display") == "block") {
                 $("#strokePalette").css("display", "none");
