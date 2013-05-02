@@ -98,6 +98,8 @@ var App = {
             var scaleWidth = (screen.width - 3) / 800;
             var scaleHeight = (screen.height - 3) / 600;
             window.setTimeout('App.fullscreen = true;', 100);
+            
+            
         }
         else
         {
@@ -110,6 +112,8 @@ var App = {
         this.scale = ((scaleWidth > scaleHeight) ? scaleHeight : scaleWidth);
         $("#wrapperMain").width(800*this.scale);
         this.display();
+        $("svg").height($("#drawing").height());
+        $("svg").width($("#drawing").width());
     },
     
     pageNumber: 1,
