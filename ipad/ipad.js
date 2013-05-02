@@ -146,7 +146,7 @@ var App = {
     selectTool: function (mode) {
         this.currentDrawingMode = mode;
         $(".active").removeClass("active");
-        this.setLaserpointer(1000,1000);
+        this.setLaserpointer(-100,-100);
         switch (mode) {
             case this.DRAWING_MODES.erase: this.sketchpad.editing("erase"); $("#erase").addClass("active"); break;
             case this.DRAWING_MODES.draw: this.sketchpad.editing(true); $("#pen").addClass("active"); break;
@@ -164,14 +164,7 @@ var App = {
         App.syncLaserpointer();
     },
     
-    click : function(e)
-    {
-        if (App.currentDrawingMode == App.DRAWING_MODES.laserpointer) //Laserpointer
-        {
-            App.setLaserpointer(e.clientX, e.clientY);
-            
-        }
-    },
+    
     setPalmRest : function(height)
     {
         if (typeof(height) == "object")
@@ -209,6 +202,17 @@ var App = {
 
 $(document).ready(function () {
     $(document).bind('touchmove', false);
+    
+    var elem = document.body;
+    if (elem.requestFullscreen) {
+        window.setTimeout('document.body.requestFullscreen();', 10);
+    } else if (elem.mozRequestFullScreen) {
+        window.setTimeout('document.body.mozRequestFullScreen();', 10);
+    } else if (elem.webkitRequestFullscreen) {
+        window.setTimeout('document.body.webkitRequestFullscreen();', 10);
+    }
+    
+    
     App.init();
     $("#drawing").touchwipe({
         wipeLeft: function () { App.swipe(1, true); },
@@ -216,7 +220,46 @@ $(document).ready(function () {
         min_move_x: 20,
         min_move_y: 20,
         preventDefaultEvents: true
-    }).click(App.click);
+    }).mousemove(function(e){
+        if (App.currentDrawingMode == App.DRAWING_MODES.laserpointer) //Laserpointer
+        {
+            $("*").css("-webkit-user-select", "none");
+			$("*").css("-moz-user-select", "none");
+			if (jQuery.browser.msie) {
+				$("body").attr("onselectstart", "return false;");
+			}
+            if (e.which == 1)
+                App.setLaserpointer(e.clientX, e.clientY);
+            else
+                App.setLaserpointer(-100,-100);
+        }   
+    }).bind("touchmove", function(e)
+    {
+        if (App.currentDrawingMode == App.DRAWING_MODES.laserpointer) //Laserpointer
+        {
+            e = e.originalEvent;
+			e.preventDefault();
+            var touch = e.touches[0];
+            App.setLaserpointer(touch.clientX, touch.clientY);
+        }
+    }).bind("touchstart", function(e)
+    {
+        if (App.currentDrawingMode == App.DRAWING_MODES.laserpointer) //Laserpointer
+        {
+            e = e.originalEvent;
+			e.preventDefault();
+            var touch = e.touches[0];
+            App.setLaserpointer(touch.clientX, touch.clientY);
+        }
+    }).bind("touchend", function(e)
+    {
+        if (App.currentDrawingMode == App.DRAWING_MODES.laserpointer) //Laserpointer
+        {
+            e = e.originalEvent;
+			e.preventDefault();
+            App.setLaserpointer(-100,-100);
+        }
+    });
     
     $(".spaceH").click(App.setPalmRest);
 });
