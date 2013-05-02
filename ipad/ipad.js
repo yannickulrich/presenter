@@ -34,6 +34,9 @@ var App = {
             self.notesArray = data.split("\n> ");
             self.showNotes();
         });
+        
+        
+        
         $.ajax({
             url: "comm/get.php?slideimages",
             cache: false
@@ -45,20 +48,27 @@ var App = {
                 self.imageArray.pop();
             for (var i = 0; i < self.imageArray.length; i++)
                 new Image().src = self.imageArray[i];
+            
                 
             self.annotationArray = new Array(self.imageArray.length);
             
             
             $("#drawing").css("background-image", "url('" + self.imageArray[0] + "')");
         });
+        
+        
 
         this.sketchpad = Raphael.sketchpad("drawing", { width: 800, height: 600, editing: true });
         this.sketchpad.change(this.syncDrawing);
         this.selectTool(this.DRAWING_MODES.none);
-
+        
+        
+        
         this.syncDrawing();
         this.syncPage();
         this.showNotes();
+        
+        
 
         $(window).resize(this.updateDesign);
         this.updateDesign();
@@ -139,10 +149,14 @@ var App = {
         this.showNotes();
     },
     selectTool: function (mode) {
+        
+    
         this.currentDrawingMode = mode;
         $(".active").removeClass("active");
         
         this.setLaserpointer(-100,-100);
+        
+        
         
         switch (mode) {
             case this.DRAWING_MODES.erase:
@@ -165,8 +179,11 @@ var App = {
                 $("#strokePalette").hide();
                 break;
         }
-
-        $("#drawing").css("background-image", "url('" + this.imageArray[this.pageNumber] + "')");
+        
+        if (this.imageArray[this.pageNumber] != undefined)
+            $("#drawing").css("background-image", "url('" + this.imageArray[this.pageNumber] + "')");
+        
+        
     },
 
     setLaserpointer: function (x, y) {
