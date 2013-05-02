@@ -1,52 +1,12 @@
-Pythagoras: $a^2+b^2=c^2$ Ist dieser satz. Eine folge: $\sin^2\phi; + \cos^2\phi = 1$ ist das
-> AHBC
-> A
-> B
-> A
-> B
-> A
-> B
-> A
-> B
-> A
-> B
-> A
-> B
-> A
-> B
-> A
-> B
-> A
-> B
-> A
-> B
-> A
-> B
-> A
-> B
-> A
-> B
-> A
-> B
-> A
-> B
-> A
-> B
-> A
-> B
-> A
-> B
-> A
-> B
-> A
-> B
-> A
-> B
-> A
-> B
-> A
-> B
-> A
-> B
-> A
-> B
+> This is the displayed note for the first slide
+> This is the displayed note for the first slide
+> This are the displayed note for 2nd slide
+> This are the displayed note for 2nd slide
+> This are the displayed note for 2nd slide
+> This are the displayed note for 2nd slide
+> This are the displayed note for 2nd slide
+> This is the displayed note for next slide
+> This is the displayed note for next slide
+> This is the displayed note for next slide
+> This is the displayed note for next slide
+> This is the displayed note for next slide

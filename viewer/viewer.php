@@ -6,11 +6,6 @@
     <head>
         <title>Viewer</title>
         <script type="text/javascript" src="lib/jquery-min.js"></script>
-        
-        
-        
-        <script type="text/javascript" src="lib/raphael.min.js"></script>
-        <script type="text/javascript" src="lib/raphael.sketchpad.js"></script>
 
         
         <!--<script type="text/javascript" src="lib/PDFJS/core.js"></script>
@@ -35,26 +30,16 @@
         <script type="text/javascript" src="lib/PDFJS/jpx.js"></script>
         <script type="text/javascript" src="lib/PDFJS/jbig2.js"></script>-->
         
-        <script type="text/javascript" src="lib/rgbcolor.js"></script> 
-        <script type="text/javascript" src="lib/canvg.js"></script> 
-        <script type="text/javascript" src="lib/canvg.js"></script> 
-        
         
         
         <script type="text/javascript" src="viewer/viewer.js"></script> 
         
         <link rel="stylesheet" href="viewer/viewer.css" type="text/css"/>
     </head>
-    <body >
-        <div id="toolbar">
-            <div class="toolbarButton" id="downloadBut"></div>
-            <div class="toolbarButton" id="fullscreenBut"></div>
-        </div>
+    <body>
         <div id="wrapperMain">
             <div id="drawing"></div>
             <div id="laserpointer" ></div>
         </div>
-        <canvas style="display:none;" id="canvasForOutput" width="1000px" height="600px"></canvas> 
-        
     </body>
 </html>

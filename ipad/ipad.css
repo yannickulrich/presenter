@@ -5,6 +5,22 @@ body
     margin: 0;
     width: 100%;   
 }
+#loading {
+    font-size: 300%;
+    font-weight: bolder;
+    margin: 200px auto 0 auto;
+    text-align: center;
+    color: #fff;
+    width: 400px;
+}
+#l2 {
+    font-size: 100%;
+    font-weight: bold;
+    margin: 80px auto 0 auto;
+    text-align: center;
+    color: #fff;
+    width: 400px;
+}
 table, td, tr, tbody {
     margin: 0;
     border: none;
@@ -32,37 +48,26 @@ table, td, tr, tbody {
     height: 600px;
     padding: 0;
 }
-#rightArea #pen, #rightArea #startLaserPointer {
-    border-bottom: 1px solid #ddd;
-}
 
 
-#pen, #erase, #startLaserPointer {
+#startLaserPointer {
     background: #888;
     width: 80px;
     height: 79px;
+}
+#rightArea td.active {
+    background: #ccc;
 }
 #nextSlide {
     width: 80px;
     height: 360px;
     border-bottom: 1px solid #ddd;
 }
-#rightArea td.active {
-    background: #ccc;
-}
 
-
-#rightArea #pen
-{
-    background-image: url(pencil.png);
-}
-#rightArea #erase
-{
-    background-image: url(eraser.png);
-}
 #rightArea #startLaserPointer
 {
     background-image: url(pointer.png);
+    background-repeat: no-repeat;
 }
 
 #notes .inner {
@@ -95,43 +100,4 @@ table, td, tr, tbody {
     position: absolute;
     z-index: 10000;
     width: 800px;
-}
-
-#strokePalette
-{
-    display: block;
-    position: absolute;
-    height: 130px;
-    width: 130px;
-    overflow: hidden;
-    background: #fff;
-    padding: 10px;
-    border-radius: 3px;
-}
-
-
-.strokeColor
-{
-    height: 25px;
-    width: 25px;
-    border-radius: 5px;
-    border: 1px solid #000;
-}
-
-.strokeSize
-{
-    border-radius: 50%;
-    border: solid thin black;
-    background-color: black;
-    margin: auto;
-}
-.strokeTD
-{
-    height: 25px;
-    width: 25px;
-}
-.strokeTDEmpty
-{
-    height: 10px;
-    width: 10px;
 }

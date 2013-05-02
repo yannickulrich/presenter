@@ -44,9 +44,8 @@
                 if ($file != "." && $file != "..") $i++;
             closedir($handle);
             
-            $str = "0\n>(0,0)";
-            
-            for ($j = 0; $j < $i; $j++) $str .= "\n>[]";
+            $str = "0\n>0,0";
+
             
             file_put_contents("../comm/news.txt", $str);
        }

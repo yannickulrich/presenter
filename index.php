@@ -1,7 +1,5 @@
 <?php
     session_start();
-    //$_SESSION['pdf'] = "slides.pdf";
-    //$_SESSION['notes'] = "notes.txt";
     
     include("tools/config.php");
     
@@ -14,21 +12,11 @@
     
     
     
-    if (isset($_GET['submit']) && isset($_POST['passwd']))
-    {
-        
-        if (md5($_POST['passwd']) == $authhash)
-        {
-            $_SESSION['passwd'] = md5($_POST['passwd']);
-        }
-    }
+    if (isset($_GET['submit']) && isset($_POST['passwd']) && md5($_POST['passwd']) == $authhash)
+        $_SESSION['passwd'] = md5($_POST['passwd']);
     if (isset($_SESSION['passwd']) && $_SESSION['passwd'] == $authhash)
     {
-        
-        if (((bool) strpos($_SERVER['HTTP_USER_AGENT'],'iPad')) || isset($_GET["ipad"]))
-            require("ipad/ipad.php");
-        else
-            require("viewer/viewer.php");
+        require("ipad/ipad.php");
         exit;
     }
     
@@ -55,8 +43,7 @@
         <div id="wrapperMain">
             <h1>PRESENTER</h1><br/>
             <form action="?submit<?php if (isset($_GET["ipad"])) echo "&ipad";?>" method="post">
-                <input type="checkbox" name="enableDrawing" value="yes"> Enable drawing?<br>
-                <input name="passwd" type="password" size="12" maxlength="12"/>
+                <input name="passwd" type="password" size="8" maxlength="8"/>
                 <input type="submit" value="Login" />
             </form> 
         </div>
