@@ -238,16 +238,6 @@ var App = {
 $(document).ready(function () {
     $(document).bind('touchmove', false);
     
-    var elem = document.body;
-    if (elem.requestFullscreen) {
-        window.setTimeout('document.body.requestFullscreen();', 10);
-    } else if (elem.mozRequestFullScreen) {
-        window.setTimeout('document.body.mozRequestFullScreen();', 10);
-    } else if (elem.webkitRequestFullscreen) {
-        window.setTimeout('document.body.webkitRequestFullscreen();', 10);
-    }
-    
-    
     App.init();
     $("#drawing").touchwipe({
         wipeLeft: function () { App.swipe(1, true); },
