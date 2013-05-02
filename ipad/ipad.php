@@ -18,7 +18,7 @@
         
         <script type="text/javascript">
             var enableDrawing = <?php
-                if ($_POST['enableDrawing'] == "yes")
+                if (isset($_POST['enableDrawing']))
                     echo "true";
                 else
                     echo "false";
@@ -32,15 +32,6 @@
         <link rel="stylesheet" href="lib/jqMath/UnifrakturMaguntia.css">
         <link rel="stylesheet" href="lib/jqMath/jqmath-0.4.0.css">
         <script src="lib/jqMath/jqmath-etc-0.4.0.min.js"></script>
-        
-        <!--<script type="text/x-mathjax-config">
-          MathJax.Hub.Config({
-            extensions: ["tex2jax.js"],
-            jax: ["input/TeX","output/HTML-CSS"],
-            tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
-          });
-        </script>
-        <script type="text/javascript" src="lib/MathJax/MathJax.js"></script>-->
         
     </head>
     <body>
