@@ -38,12 +38,17 @@ var App = {
             url: "comm/get.php?slideimages",
             cache: false
         }).done(function (data) {
+            
             self.imageArray = data.split("\n");
+            
             if (self.imageArray[self.imageArray.length - 1] == "")
                 self.imageArray.pop();
             for (var i = 0; i < self.imageArray.length; i++)
                 new Image().src = self.imageArray[i];
+                
             self.annotationArray = new Array(self.imageArray.length);
+            
+            
             $("#drawing").css("background-image", "url('" + self.imageArray[0] + "')");
         });
 

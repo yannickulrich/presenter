@@ -14,7 +14,6 @@
         <script type="text/javascript" src="lib/jquery-min.js"></script>
         <script type="text/javascript" src="lib/raphael.min.js"></script>
         <script type="text/javascript" src="lib/raphael.sketchpad.js"></script>
-        <script type="text/javascript" src="lib/doubletab.js"></script>
         <script type="text/javascript" src="lib/swipe.js"></script>
         
         <script type="text/javascript" src="ipad/ipad.js"></script>
