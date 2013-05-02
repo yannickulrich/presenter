@@ -76,7 +76,15 @@ var App = {
     
         $(".spaceH").click(App.setPalmRest);
 
-        self.initDrawFeatures();
+
+        if (enableDrawing)
+            self.initDrawFeatures();
+        else
+        {//Hide buttons
+            $("#pen").hide();
+            $("#erase").hide();
+            $("#startLaserPointer").hide();
+        }
         self.initLaserpointer();
     },
     initDrawFeatures: function () {

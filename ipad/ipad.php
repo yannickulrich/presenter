@@ -16,6 +16,15 @@
         <script type="text/javascript" src="lib/raphael.sketchpad.js"></script>
         <script type="text/javascript" src="lib/swipe.js"></script>
         
+        <script type="text/javascript">
+            var enableDrawing = <?php
+                if ($_POST['enableDrawing'] == "yes")
+                    echo "true";
+                else
+                    echo "false";
+            ?>;
+        </script>
+        
         <script type="text/javascript" src="ipad/ipad.js"></script>
         <link rel="stylesheet" href="ipad/ipad.css" type="text/css"/>
 
