@@ -141,8 +141,9 @@ $(document).ready(function() {
 	});
 	
 	var elem = document.getElementById("wrapperMain");
-    if (!(elem.requestFullscreen || elem.mozRequestFullScreen || elem.webkitRequestFullscreen))
+	$("#toolbar").hide();
+    if ((elem.requestFullscreen || elem.mozRequestFullScreen || elem.webkitRequestFullscreen))
     {
-        $("#toolbar").css("display", "none");
+        $("#toolbar").show();
     }
 });
