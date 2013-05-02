@@ -1,13 +1,7 @@
-<<<<<<< HEAD
-2
+1
 >-0.47375,-0.18333333333333332
 >[]
-=======
-0
->-1.95,-1.6833333333333333
->>>>>>> Updates-iPad-files
 >[]
->[{"fill":"none","stroke":"rgb(0, 0, 0)","path":"M536,351L536,350L539,349L542,347L545,344L554,334L563,324L567,314L568,312L568,311L573,328L573,375L574,392L577,391","stroke-opacity":1,"stroke-width":5,"stroke-linecap":"round","stroke-linejoin":"round","transform":[],"type":"path"},{"fill":"none","stroke":"rgb(0, 0, 0)","path":"M606,328L606,329L606,332L606,337L606,343L606,350L606,364L606,377L606,379","stroke-opacity":1,"stroke-width":5,"stroke-linecap":"round","stroke-linejoin":"round","transform":[],"type":"path"},{"fill":"none","stroke":"rgb(0, 0, 0)","path":"M598,353L603,353L611,353L615,353L629,353L638,353L644,353","stroke-opacity":1,"stroke-width":5,"stroke-linecap":"round","stroke-linejoin":"round","transform":[],"type":"path"},{"fill":"none","stroke":"rgb(0, 0, 0)","path":"M648,356L648,353L648,349L648,340L649,331L652,323L655,317L656,316L656,318L656,332L656,372L658,388","stroke-opacity":1,"stroke-width":5,"stroke-linecap":"round","stroke-linejoin":"round","transform":[],"type":"path"},{"fill":"none","stroke":"rgb(0, 0, 0)","path":"M678,365L679,365L680,365L687,367L696,369L703,369L714,369L724,369","stroke-opacity":1,"stroke-width":5,"stroke-linecap":"round","stroke-linejoin":"round","transform":[],"type":"path"},{"fill":"none","stroke":"rgb(0, 0, 0)","path":"M722,374L723,374L725,374L729,374L734,374L739,374L742,374","stroke-opacity":1,"stroke-width":5,"stroke-linecap":"round","stroke-linejoin":"round","transform":[],"type":"path"},{"fill":"none","stroke":"rgb(0, 0, 0)","path":"M753,353L753,355L755,357L757,362L760,372L760,385L757,398L748,410L734,426L737,428L768,428","stroke-opacity":1,"stroke-width":5,"stroke-linecap":"round","stroke-linejoin":"round","transform":[],"type":"path"},{"fill":"none","stroke":"rgb(255, 0, 0)","path":"M99,447L100,447L101,447L103,447L104,447L105,447L107,447L110,447L115,447L126,447L133,447L136,447L137,447L138,447L139,447L140,447L141,447L142,447L143,447","stroke-opacity":1,"stroke-width":5,"stroke-linecap":"round","stroke-linejoin":"round","transform":[],"type":"path"}]
 >[]
 >[]
 >[]
