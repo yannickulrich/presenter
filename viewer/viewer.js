@@ -75,7 +75,7 @@ var App = {
             imageArray = data.split("\n");
             if (imageArray[imageArray.length - 1] == "")
                 imageArray.pop();
-                
+            
             for (var i = 0; i < self.imageArray.length; i++)
                 new Image().src = self.imageArray[i];
             
@@ -139,4 +139,10 @@ $(document).ready(function() {
         }
         
 	});
+	
+	var elem = document.getElementById("wrapperMain");
+    if (!(elem.requestFullscreen || elem.mozRequestFullScreen || elem.webkitRequestFullscreen))
+    {
+        $("#toolbar").css("display", "none");
+    }
 });
