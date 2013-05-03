@@ -47,9 +47,8 @@ var App = {
             if (self.imageArray[self.imageArray.length - 1] == "")
                 self.imageArray.pop();
             
-            //self.getImage(0);
-            for (var i = 0; i < self.imageArray.length; i++)
-                new Image().src = self.imageArray[i];
+            self.getImage(0);
+            
             
             
                 
@@ -148,8 +147,8 @@ var App = {
         else this.sketchpad.clear();
 
 
-        $("#drawing").css("background-image", "url('" + this.imageArray[this.pageNumber] + "')");
-        //$("#drawing")[0].style.background="url(" + localStorage.getItem('image' + this.pageNumber) + ")";
+        //$("#drawing").css("background-image", "url('" + this.imageArray[this.pageNumber] + "')");
+        $("#drawing")[0].style.background="url(" + localStorage.getItem('image' + this.pageNumber) + ")";
         
         this.syncPage();
         this.showNotes();
