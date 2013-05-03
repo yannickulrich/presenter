@@ -23,6 +23,9 @@
                 else
                     echo "false";
             ?>;
+            
+            var slideWidth = <?php echo $_POST['slideWidth']; ?>;
+            var slideHeight = <?php echo $_POST['slideHeight']; ?>;
         </script>
         
         <script type="text/javascript" src="ipad/ipad.js"></script>

@@ -55,6 +55,8 @@
         <div id="wrapperMain">
             <h1>PRESENTER</h1><br/>
             <form action="?submit<?php if (isset($_GET["ipad"])) echo "&ipad";?>" method="post">
+                <input type="hidden" name="slideHeight" value="600">
+                <input type="hidden" name="slideWidth" value="800">
                 <input type="checkbox" name="enableDrawing" value="yes"> Enable drawing?<br>
                 <input name="passwd" type="password" size="12" maxlength="12"/>
                 <input type="submit" value="Login" />

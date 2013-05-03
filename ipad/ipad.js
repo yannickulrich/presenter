@@ -21,7 +21,7 @@ var App = {
         var totalw = window.innerWidth;
         var totalh = window.innerHeight;
         var pen = $("#pen").offset();
-        var spaceH = (totalw - 800 - 160) / 2;
+        var spaceH = (totalw - slideWidth - 160) / 2;
         $(".spaceH").css("width", spaceH);
         $("#strokePalette").offset({ top: pen.top - 25, left: pen.left - 170 });
     },
@@ -61,7 +61,7 @@ var App = {
         
         
 
-        this.sketchpad = Raphael.sketchpad("drawing", { width: 800, height: 600, editing: true });
+        this.sketchpad = Raphael.sketchpad("drawing", { width: slideWidth, height: slideHeight, editing: true });
         this.sketchpad.change(this.syncDrawing);
         this.selectTool(this.DRAWING_MODES.none);
         
